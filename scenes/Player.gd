@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var speed = 400
-var player_prefix
+export var player_prefix = ""
 var velocity
 var screen_size
 var radius
@@ -9,7 +9,7 @@ var max_x
 var max_y
 
 func _ready():
-	player_prefix = "p1_"
+	player_prefix = player_prefix + "_"
 	velocity = Vector2.ZERO
 	screen_size = get_viewport_rect().size
 	radius = ($CollisionShape2D.shape as CircleShape2D).radius
