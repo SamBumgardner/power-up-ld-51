@@ -12,8 +12,6 @@ func init(spawn_position, spawn_velocity, spawn_collision_mask, sprite_frame):
 	collision_layer = 0
 	collision_mask = spawn_collision_mask
 	$AnimatedSprite.frame = sprite_frame
-	#connect("body_entered", self, "_on_Bullet_body_entered")
-
 
 func _physics_process(delta):
 	position += velocity * delta
