@@ -3,7 +3,6 @@ extends Area2D
 class_name Player
 
 signal hit
-signal fired_projectile
 signal create_turret
 
 export var PROJECTILE_SPEED = 500
@@ -27,14 +26,15 @@ var radius
 var max_x
 var max_y
 
-var upgrade_available = true
-
-var upgrades:Array = []
-
 var pattern_targeted = preload("res://patterns/targeted/PatternTargeted.gd")
 var pattern_random = preload("res://patterns/random/PatternRandom.gd")
 var pattern_plus = preload("res://patterns/plus/PatternPlus.gd")
 var patterns:Array = [pattern_targeted, pattern_random, pattern_plus]
+var upgrades:Array = []
+
+var upgrades_available = 2
+const upgrade_refill = 2
+var next_upgrade_index:int = randi() % patterns.size()
 
 func _ready():
 	player_prefix = "p" + str(player_number) + "_"
@@ -51,34 +51,34 @@ func _process(_delta):
 	else:
 		$AnimatedSprite.stop()
 	
-	if Input.is_action_just_pressed(player_prefix + "upgrade") && upgrade_available:
+	if Input.is_action_just_pressed(player_prefix + "upgrade") && upgrades_available:
 		assign_upgrade()
 	
-	if Input.is_action_just_pressed(player_prefix + "turret") && upgrade_available:
+	if Input.is_action_just_pressed(player_prefix + "turret") && upgrades_available:
 		create_turret()
 
-func generate_random_pattern():
-	var pattern_selection = randi() % patterns.size()
+func get_next_pattern():
 	var pattern
-	if pattern_selection == 0:
-		pattern = patterns[pattern_selection].new(target_player_collision, target_player)
+	if next_upgrade_index == 0:
+		pattern = patterns[next_upgrade_index].new(target_player_collision, target_player)
 	else:
-		pattern = patterns[pattern_selection].new(target_player_collision)
+		pattern = patterns[next_upgrade_index].new(target_player_collision)
 	
+	next_upgrade_index = randi() % patterns.size()
 	return pattern
 
 func assign_upgrade():
-	var upgrade = generate_random_pattern()
+	var upgrade = get_next_pattern()
 	upgrades.append(upgrade)
 	add_child(upgrade)
-	upgrade_available = false
-
-func _on_Upgrade_timeout():
-	upgrade_available = true
+	upgrades_available -= 1
 
 func create_turret():
-	emit_signal("create_turret", generate_random_pattern(), position)
-	upgrade_available = false
+	emit_signal("create_turret", get_next_pattern(), position)
+	upgrades_available -= 1
+	
+func _on_Upgrade_timeout():
+	upgrades_available = upgrade_refill
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO # The player's movement vector.
