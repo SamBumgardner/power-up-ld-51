@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "PatternBase",
+"language": "GDScript",
+"path": "res://patterns/PatternBase.gd"
+}, {
+"base": "Reference",
+"class": "ProjectileInfo",
+"language": "GDScript",
+"path": "res://patterns/ProjectileInfo.gd"
+}, {
 "base": "Reference",
 "class": "ProjectilePool",
 "language": "GDScript",
 "path": "res://ProjectilePool.gd"
 } ]
 _global_script_class_icons={
+"PatternBase": "",
+"ProjectileInfo": "",
 "ProjectilePool": ""
 }
 
