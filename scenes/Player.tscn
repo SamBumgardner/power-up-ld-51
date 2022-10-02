@@ -24,13 +24,14 @@ frames = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
 
-[node name="FireBullet" type="Timer" parent="."]
-autostart = true
-
 [node name="Recovery" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
+[node name="Upgrade" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [connection signal="area_shape_entered" from="." to="." method="_on_Player_area_shape_entered"]
-[connection signal="timeout" from="FireBullet" to="." method="_on_FireBullet_timeout"]
 [connection signal="timeout" from="Recovery" to="." method="_on_Recovery_timeout"]
+[connection signal="timeout" from="Upgrade" to="." method="_on_Upgrade_timeout"]

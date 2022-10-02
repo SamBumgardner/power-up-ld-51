@@ -1,11 +1,9 @@
 extends Node
 
-var projectile_pool
+class_name Gameplay
 
+var projectile_pool = preload("res://ProjectilePool.gd").new()
 
 func _ready():
-	projectile_pool = preload("res://ProjectilePool.gd").new()
 	projectile_pool.init(self)
 	
-	$Player1.connect("fired_projectile", projectile_pool, "_on_fired_projectile")
-	$Player2.connect("fired_projectile", projectile_pool, "_on_fired_projectile")
