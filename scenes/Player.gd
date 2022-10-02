@@ -3,7 +3,7 @@ extends Area2D
 class_name Player
 
 signal hit
-signal fired_projectile
+signal create_turret
 
 export var PROJECTILE_SPEED = 500
 export var PROJECTILE_SPRITE_INDEX = 32
@@ -30,6 +30,11 @@ var pattern_targeted = preload("res://patterns/targeted/PatternTargeted.gd")
 var pattern_random = preload("res://patterns/random/PatternRandom.gd")
 var pattern_plus = preload("res://patterns/plus/PatternPlus.gd")
 var patterns:Array = [pattern_targeted, pattern_random, pattern_plus]
+var upgrades:Array = []
+
+var upgrades_available = 2
+const upgrade_refill = 2
+var next_upgrade_index:int = randi() % patterns.size()
 
 func _ready():
 	player_prefix = "p" + str(player_number) + "_"
@@ -46,18 +51,34 @@ func _process(_delta):
 	else:
 		$AnimatedSprite.stop()
 	
-	if Input.is_action_just_pressed(player_prefix + "upgrade"):
-		assign_random_upgrade()
+	if Input.is_action_just_pressed(player_prefix + "upgrade") && upgrades_available:
+		assign_upgrade()
+	
+	if Input.is_action_just_pressed(player_prefix + "turret") && upgrades_available:
+		create_turret()
 
-func _on_Upgrade_timeout():
-	assign_random_upgrade()
-
-func assign_random_upgrade():
-	var pattern_selection = randi() % patterns.size()
-	if pattern_selection == 0:
-		add_child(patterns[pattern_selection].new(target_player_collision, target_player))
+func get_next_pattern():
+	var pattern
+	if next_upgrade_index == 0:
+		pattern = patterns[next_upgrade_index].new(target_player_collision, target_player)
 	else:
-		add_child(patterns[pattern_selection].new(target_player_collision))
+		pattern = patterns[next_upgrade_index].new(target_player_collision)
+	
+	next_upgrade_index = randi() % patterns.size()
+	return pattern
+
+func assign_upgrade():
+	var upgrade = get_next_pattern()
+	upgrades.append(upgrade)
+	add_child(upgrade)
+	upgrades_available -= 1
+
+func create_turret():
+	emit_signal("create_turret", get_next_pattern(), position)
+	upgrades_available -= 1
+	
+func _on_Upgrade_timeout():
+	upgrades_available = upgrade_refill
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO # The player's movement vector.
@@ -95,7 +116,10 @@ func kill():
 	$CollisionShape2D.set_deferred("disabled", true)
 	set_process(false)
 	set_physics_process(false)
-	set_physics_process(false)
+	for upgrade in upgrades:
+		upgrade.set_process(false)
+		upgrade.set_physics_process(false)
+	
 
 func _on_Recovery_timeout():
 	$AnimatedSprite.modulate = DEFAULT_TINT
