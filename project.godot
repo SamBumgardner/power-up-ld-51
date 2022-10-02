@@ -19,10 +19,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://patterns/random/CannonRandom.gd"
 }, {
+"base": "Node",
+"class": "Gameplay",
+"language": "GDScript",
+"path": "res://scenes/Gameplay.gd"
+}, {
 "base": "Node2D",
 "class": "PatternBase",
 "language": "GDScript",
 "path": "res://patterns/PatternBase.gd"
+}, {
+"base": "PatternBase",
+"class": "PatternRandom",
+"language": "GDScript",
+"path": "res://patterns/random/PatternRandom.gd"
+}, {
+"base": "Area2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scenes/Player.gd"
 }, {
 "base": "Reference",
 "class": "ProjectileInfo",
@@ -37,7 +52,10 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "CannonBase": "",
 "CannonRandom": "",
+"Gameplay": "",
 "PatternBase": "",
+"PatternRandom": "",
+"Player": "",
 "ProjectileInfo": "",
 "ProjectilePool": ""
 }

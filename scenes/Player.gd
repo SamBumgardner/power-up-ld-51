@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Player
+
 signal hit
 signal fired_projectile
 
@@ -24,6 +26,8 @@ var radius
 var max_x
 var max_y
 
+var pattern_random = preload("res://patterns/random/PatternRandom.gd")
+
 func _ready():
 	player_prefix = "p" + str(player_number) + "_"
 	velocity = Vector2.ZERO
@@ -31,6 +35,9 @@ func _ready():
 	radius = ($CollisionShape2D.shape as CircleShape2D).radius
 	max_x = screen_size.x - radius
 	max_y = screen_size.y - radius
+	
+	add_child(pattern_random.new(target_player_collision))
+
 
 func _process(_delta):
 	if velocity.length() > 0:
@@ -81,14 +88,3 @@ func kill():
 func _on_Recovery_timeout():
 	$AnimatedSprite.modulate = DEFAULT_TINT
 	$CollisionShape2D.set_deferred("disabled", false)
-
-##########
-# BULLET #
-##########
-func get_vector_to_target():
-	return Vector2(1,0).rotated(get_angle_to(target_player.get("position")))
-
-func _on_FireBullet_timeout():
-	emit_signal("fired_projectile", position, 
-		get_vector_to_target() * PROJECTILE_SPEED, target_player_collision,
-		PROJECTILE_SPRITE_INDEX)
