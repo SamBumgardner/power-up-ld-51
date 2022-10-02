@@ -1,17 +1,22 @@
-extends Node
+extends Reference
+
+class_name CannonBase
 
 signal fired_projectile
 
-export(NodePath) var pattern_path
-onready var pattern = get_node(pattern_path)
-onready var pattern_duration = pattern.get("duration")
-onready var pattern_position = pattern.get("position")
-onready var pattern_collision = pattern.get("bullet_collision_mask")
+var pattern_duration:float
+var pattern_position:Vector2
+var pattern_collision:int
 
 export var projectile_sprite_frame = 0
 
-var shoot_times: Array = [1]
-var calc_vector: Vector2 = Vector2(1, 0)
+var shoot_times:Array = [1]
+var calc_vector:Vector2 = Vector2(1, 0)
+
+func _init(_pattern_duration:float, _pattern_position:Vector2, _pattern_collision:int):
+	pattern_duration = _pattern_duration
+	pattern_position = _pattern_position
+	pattern_collision = _pattern_collision
 
 func try_shoot(start_time, end_time):
 	for shoot_time in shoot_times:
@@ -27,4 +32,4 @@ func try_shoot(start_time, end_time):
 
 func populate_velocity(projectile_info:ProjectileInfo):
 	calc_vector = Vector2.RIGHT
-	projectile_info.velocity = calc_vector.rotated(randf() * PI * 2)
+	projectile_info.velocity = calc_vector

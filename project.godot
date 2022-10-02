@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "CannonBase",
+"language": "GDScript",
+"path": "res://patterns/CannonBase.gd"
+}, {
+"base": "CannonBase",
+"class": "CannonRandom",
+"language": "GDScript",
+"path": "res://patterns/random/CannonRandom.gd"
+}, {
 "base": "Node2D",
 "class": "PatternBase",
 "language": "GDScript",
@@ -25,6 +35,8 @@ _global_script_classes=[ {
 "path": "res://ProjectilePool.gd"
 } ]
 _global_script_class_icons={
+"CannonBase": "",
+"CannonRandom": "",
 "PatternBase": "",
 "ProjectileInfo": "",
 "ProjectilePool": ""
