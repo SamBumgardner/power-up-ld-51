@@ -8,6 +8,9 @@ func _init(_bullet_collision_mask:int, _targetNode:Node2D).(_bullet_collision_ma
 	targetNode = _targetNode
 
 func get_cannons():
+	var projectile_infos = [
+		ProjectileInfo.new(1, .5),
+	]
 	return [
-		CannonTargeted.new(self, duration, bullet_collision_mask, targetNode)
+		CannonTargeted.new(self, duration, bullet_collision_mask, projectile_infos, targetNode)
 	]

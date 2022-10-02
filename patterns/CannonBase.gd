@@ -8,18 +8,18 @@ var pattern_parent:Node2D
 var pattern_duration:float
 var pattern_collision:int
 
-
 export var projectile_sprite_frame = 0
-export var base_velocity:float = 500
+export var base_velocity:float = 400
 var projectile_infos:Array
 var calc_vector:Vector2 = Vector2(1, 0)
 
-func _init(_pattern_parent:Node2D, _pattern_duration:float, _pattern_collision:int):
+func _init(_pattern_parent:Node2D, _pattern_duration:float, _pattern_collision:int, _projectile_infos:Array):
 	pattern_parent = _pattern_parent
 	pattern_duration = _pattern_duration
 	pattern_collision = _pattern_collision
 	
-	projectile_infos = [ProjectileInfo.new(1, 1)]
+	projectile_infos = _projectile_infos
+	pass
 
 func try_shoot(start_time, end_time):
 	for projectile_info in projectile_infos:

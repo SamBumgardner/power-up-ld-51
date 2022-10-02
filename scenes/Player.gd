@@ -26,8 +26,10 @@ var radius
 var max_x
 var max_y
 
-var pattern_random = preload("res://patterns/random/PatternRandom.gd")
 var pattern_targeted = preload("res://patterns/targeted/PatternTargeted.gd")
+var pattern_random = preload("res://patterns/random/PatternRandom.gd")
+var pattern_plus = preload("res://patterns/plus/PatternPlus.gd")
+var patterns:Array = [pattern_targeted, pattern_random, pattern_plus]
 
 func _ready():
 	player_prefix = "p" + str(player_number) + "_"
@@ -36,9 +38,6 @@ func _ready():
 	radius = ($CollisionShape2D.shape as CircleShape2D).radius
 	max_x = screen_size.x - radius
 	max_y = screen_size.y - radius
-	
-	add_child(pattern_targeted.new(target_player_collision, target_player))
-
 
 func _process(_delta):
 	if velocity.length() > 0:
@@ -46,6 +45,19 @@ func _process(_delta):
 		$AnimatedSprite.play()
 	else:
 		$AnimatedSprite.stop()
+	
+	if Input.is_action_just_pressed(player_prefix + "upgrade"):
+		assign_random_upgrade()
+
+func _on_Upgrade_timeout():
+	assign_random_upgrade()
+
+func assign_random_upgrade():
+	var pattern_selection = randi() % patterns.size()
+	if pattern_selection == 0:
+		add_child(patterns[pattern_selection].new(target_player_collision, target_player))
+	else:
+		add_child(patterns[pattern_selection].new(target_player_collision))
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO # The player's movement vector.
@@ -84,8 +96,10 @@ func kill():
 	set_process(false)
 	set_physics_process(false)
 	set_physics_process(false)
-	$FireBullet.stop()
 
 func _on_Recovery_timeout():
 	$AnimatedSprite.modulate = DEFAULT_TINT
 	$CollisionShape2D.set_deferred("disabled", false)
+
+
+
