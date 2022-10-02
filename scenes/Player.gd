@@ -27,6 +27,8 @@ var radius
 var max_x
 var max_y
 
+var upgrade_available = true
+
 var upgrades:Array = []
 
 var pattern_targeted = preload("res://patterns/targeted/PatternTargeted.gd")
@@ -49,10 +51,10 @@ func _process(_delta):
 	else:
 		$AnimatedSprite.stop()
 	
-	if Input.is_action_just_pressed(player_prefix + "upgrade"):
+	if Input.is_action_just_pressed(player_prefix + "upgrade") && upgrade_available:
 		assign_upgrade()
 	
-	if Input.is_action_just_pressed(player_prefix + "turret"):
+	if Input.is_action_just_pressed(player_prefix + "turret") && upgrade_available:
 		create_turret()
 
 func generate_random_pattern():
@@ -69,12 +71,14 @@ func assign_upgrade():
 	var upgrade = generate_random_pattern()
 	upgrades.append(upgrade)
 	add_child(upgrade)
+	upgrade_available = false
 
 func _on_Upgrade_timeout():
-	assign_upgrade()
+	upgrade_available = true
 
 func create_turret():
 	emit_signal("create_turret", generate_random_pattern(), position)
+	upgrade_available = false
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO # The player's movement vector.
