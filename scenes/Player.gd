@@ -4,6 +4,7 @@ class_name Player
 
 signal hit
 signal fired_projectile
+signal create_turret
 
 export var PROJECTILE_SPEED = 500
 export var PROJECTILE_SPRITE_INDEX = 32
@@ -26,6 +27,8 @@ var radius
 var max_x
 var max_y
 
+var upgrades:Array = []
+
 var pattern_targeted = preload("res://patterns/targeted/PatternTargeted.gd")
 var pattern_random = preload("res://patterns/random/PatternRandom.gd")
 var pattern_plus = preload("res://patterns/plus/PatternPlus.gd")
@@ -47,17 +50,31 @@ func _process(_delta):
 		$AnimatedSprite.stop()
 	
 	if Input.is_action_just_pressed(player_prefix + "upgrade"):
-		assign_random_upgrade()
+		assign_upgrade()
+	
+	if Input.is_action_just_pressed(player_prefix + "turret"):
+		create_turret()
+
+func generate_random_pattern():
+	var pattern_selection = randi() % patterns.size()
+	var pattern
+	if pattern_selection == 0:
+		pattern = patterns[pattern_selection].new(target_player_collision, target_player)
+	else:
+		pattern = patterns[pattern_selection].new(target_player_collision)
+	
+	return pattern
+
+func assign_upgrade():
+	var upgrade = generate_random_pattern()
+	upgrades.append(upgrade)
+	add_child(upgrade)
 
 func _on_Upgrade_timeout():
-	assign_random_upgrade()
+	assign_upgrade()
 
-func assign_random_upgrade():
-	var pattern_selection = randi() % patterns.size()
-	if pattern_selection == 0:
-		add_child(patterns[pattern_selection].new(target_player_collision, target_player))
-	else:
-		add_child(patterns[pattern_selection].new(target_player_collision))
+func create_turret():
+	emit_signal("create_turret", generate_random_pattern(), position)
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO # The player's movement vector.
@@ -95,7 +112,10 @@ func kill():
 	$CollisionShape2D.set_deferred("disabled", true)
 	set_process(false)
 	set_physics_process(false)
-	set_physics_process(false)
+	for upgrade in upgrades:
+		upgrade.set_process(false)
+		upgrade.set_physics_process(false)
+	
 
 func _on_Recovery_timeout():
 	$AnimatedSprite.modulate = DEFAULT_TINT
