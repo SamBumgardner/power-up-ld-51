@@ -27,6 +27,7 @@ var max_x
 var max_y
 
 var pattern_random = preload("res://patterns/random/PatternRandom.gd")
+var pattern_targeted = preload("res://patterns/targeted/PatternTargeted.gd")
 
 func _ready():
 	player_prefix = "p" + str(player_number) + "_"
@@ -36,7 +37,7 @@ func _ready():
 	max_x = screen_size.x - radius
 	max_y = screen_size.y - radius
 	
-	add_child(pattern_random.new(target_player_collision))
+	add_child(pattern_targeted.new(target_player_collision, target_player))
 
 
 func _process(_delta):

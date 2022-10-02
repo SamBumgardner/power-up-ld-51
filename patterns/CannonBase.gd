@@ -8,6 +8,7 @@ var pattern_parent:Node2D
 var pattern_duration:float
 var pattern_collision:int
 
+
 export var projectile_sprite_frame = 0
 export var base_velocity:float = 500
 var projectile_infos:Array
