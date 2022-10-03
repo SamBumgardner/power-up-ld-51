@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://hud/UpgradeProgress.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 1 )
+
+[node name="UpgradeProgress" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="UpgradeTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="LeftHalf" type="ProgressBar" parent="."]
+margin_right = 512.0
+margin_bottom = 15.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+percent_visible = false
+
+[node name="RightHalf" type="ProgressBar" parent="."]
+margin_left = 1024.0
+margin_top = 15.0
+margin_right = 1536.0
+margin_bottom = 30.0
+grow_horizontal = 2
+rect_rotation = 180.0
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+percent_visible = false

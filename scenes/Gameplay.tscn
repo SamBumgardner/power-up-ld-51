@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://hud/UpgradeProgress.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Gameplay.gd" type="Script" id=3]
+[ext_resource path="res://hud/PlayerHealthBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://hud/NextUpgradeTracker.tscn" type="PackedScene" id=5]
 
 [node name="Gameplay" type="Node"]
 script = ExtResource( 3 )
@@ -15,3 +18,25 @@ position = Vector2( 600, 200 )
 collision_layer = 2
 player_number = 2
 target_player_path = NodePath("../Player1")
+
+[node name="Projectiles" type="Node" parent="."]
+
+[node name="HealthBarP1" parent="." instance=ExtResource( 4 )]
+margin_top = 15.0
+margin_bottom = 0.0
+player_path = NodePath("../Player1")
+
+[node name="HealthBarP2" parent="." instance=ExtResource( 4 )]
+margin_left = 1024.0
+margin_top = 600.0
+margin_right = 14.0
+margin_bottom = 585.0
+rect_rotation = 180.0
+player_path = NodePath("../Player2")
+
+[node name="UpgradeProgress" parent="." instance=ExtResource( 2 )]
+
+[node name="NextUpgradeTracker" parent="." instance=ExtResource( 5 )]
+position = Vector2( 384, 15 )
+p1_path = NodePath("../Player1")
+p2_path = NodePath("../Player2")
