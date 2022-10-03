@@ -5,6 +5,7 @@ class_name Player
 signal hit
 signal kill
 signal create_turret
+signal upgrade_consumed
 signal upgrades_changed
 
 export var speed = 125
@@ -78,6 +79,7 @@ func consume_next_pattern():
 	else:
 		pattern = patterns[next_upgrade_index].new(target_player_collision)
 	
+	emit_signal("upgrade_consumed")
 	emit_signal("upgrades_changed", next_upgrades)
 	return pattern
 
