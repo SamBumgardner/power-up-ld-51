@@ -10,11 +10,11 @@
 script = ExtResource( 3 )
 
 [node name="Player1" parent="." instance=ExtResource( 1 )]
-position = Vector2( 150, 200 )
+position = Vector2( 256, 300 )
 target_player_path = NodePath("../Player2")
 
 [node name="Player2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 600, 200 )
+position = Vector2( 768, 300 )
 collision_layer = 2
 player_number = 2
 target_player_path = NodePath("../Player1")
