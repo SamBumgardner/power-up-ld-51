@@ -10,7 +10,7 @@ signal upgrades_changed
 
 export var speed = 125
 export var max_health = 5
-var health = max_health
+onready var health = max_health
 export var player_number = 1
 export(NodePath) var target_player_path
 

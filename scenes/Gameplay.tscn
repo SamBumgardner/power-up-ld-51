@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://hud/UpgradeProgress.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Gameplay.gd" type="Script" id=3]
 [ext_resource path="res://hud/PlayerHealthBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://hud/NextUpgradeTracker.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/RestartGameControl.gd" type="Script" id=6]
 
 [node name="Gameplay" type="Node"]
 script = ExtResource( 3 )
@@ -14,7 +15,19 @@ margin_left = 452.0
 margin_top = 70.0
 margin_right = 572.0
 margin_bottom = 85.0
+grow_horizontal = 2
 text = "0"
+align = 1
+
+[node name="Announcement" type="Label" parent="."]
+visible = false
+margin_left = 14.0
+margin_top = 89.0
+margin_right = 346.0
+margin_bottom = 104.0
+grow_horizontal = 2
+rect_scale = Vector2( 3, 3 )
+text = "Game Over"
 align = 1
 
 [node name="Player1" parent="." instance=ExtResource( 1 )]
@@ -43,3 +56,15 @@ player_path = NodePath("../Player2")
 position = Vector2( 384, 15 )
 p1_path = NodePath("../Player1")
 p2_path = NodePath("../Player2")
+
+[node name="GameOverToResetDelay" type="Timer" parent="."]
+pause_mode = 2
+wait_time = 1.5
+one_shot = true
+
+[node name="RestartGameControl" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 6 )
+
+[connection signal="timeout" from="GameOverToResetDelay" to="." method="_on_GameOverToResetDelay_timeout"]
+[connection signal="timeout" from="GameOverToResetDelay" to="RestartGameControl" method="_on_GameOverToResetDelay_timeout"]

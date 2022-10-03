@@ -48,6 +48,7 @@ stream = ExtResource( 3 )
 stream = ExtResource( 6 )
 
 [node name="SFX_Explosion_Long" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 5 )
 
 [node name="SFX_Explosion_High" type="AudioStreamPlayer" parent="."]
