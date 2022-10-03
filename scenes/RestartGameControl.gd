@@ -7,6 +7,7 @@ func _input(event):
 	if allow_reset_game && event is InputEventKey:
 		get_tree().paused = false
 		allow_reset_game = false
+		get_tree().reload_current_scene()
 
 func _on_GameOverToResetDelay_timeout():
 	allow_reset_game = true
