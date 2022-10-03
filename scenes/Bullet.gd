@@ -1,5 +1,8 @@
 extends Area2D
 
+const BLUE = Color(0, 25, 175, 200)
+const ORANGE = Color(225, 50, 0, 200)
+
 var screen_size
 var velocity = Vector2();
 
@@ -12,6 +15,11 @@ func init(spawn_position, spawn_velocity, spawn_collision_mask, sprite_frame):
 	collision_layer = 0
 	collision_mask = spawn_collision_mask
 	$AnimatedSprite.frame = sprite_frame
+	# hacky way to color sprites to indicate player allegiance:
+	if (spawn_collision_mask % 2 == 0):
+		$AnimatedSprite.modulate = BLUE
+	else:
+		$AnimatedSprite.modulate = ORANGE
 
 func _physics_process(delta):
 	position += velocity * delta
