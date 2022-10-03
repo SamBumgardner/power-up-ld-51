@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://art/plus_powerup.png" type="Texture" id=1]
+[ext_resource path="res://art/random_powerup.png" type="Texture" id=2]
+[ext_resource path="res://art/targeted_powerup.png" type="Texture" id=3]
+[ext_resource path="res://hud/UpgradeTrackerQueue.gd" type="Script" id=4]
+[ext_resource path="res://hud/NextUpgradeTrackerRoot.gd" type="Script" id=5]
+
+[sub_resource type="Gradient" id=1]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 1.94053e-28, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 0.529412, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 1 )
+width = 128
+height = 48
+fill_from = Vector2( 0.9875, 0.752239 )
+fill_to = Vector2( 0, 0.8 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": false,
+"name": "default",
+"speed": 0.0
+} ]
+
+[node name="NextUpgradeTracker" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="BackgroundLeft" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 128.0
+margin_bottom = 48.0
+texture = SubResource( 2 )
+script = ExtResource( 4 )
+player_number = 1
+parent_path = NodePath("..")
+
+[node name="FirstUpgrade" type="AnimatedSprite" parent="BackgroundLeft"]
+position = Vector2( 100, 24 )
+scale = Vector2( 0.25, 0.25 )
+frames = SubResource( 3 )
+
+[node name="SecondUpgrade" type="AnimatedSprite" parent="BackgroundLeft"]
+position = Vector2( 56, 24 )
+scale = Vector2( 0.25, 0.25 )
+frames = SubResource( 3 )
+
+[node name="BackgroundRight" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 128.0
+margin_right = 256.0
+margin_bottom = 48.0
+texture = SubResource( 2 )
+flip_h = true
+script = ExtResource( 4 )
+player_number = 2
+parent_path = NodePath("..")
+
+[node name="FirstUpgrade" type="AnimatedSprite" parent="BackgroundRight"]
+position = Vector2( 28, 24 )
+scale = Vector2( 0.25, 0.25 )
+frames = SubResource( 3 )
+
+[node name="SecondUpgrade" type="AnimatedSprite" parent="BackgroundRight"]
+position = Vector2( 72, 24 )
+scale = Vector2( 0.25, 0.25 )
+frames = SubResource( 3 )

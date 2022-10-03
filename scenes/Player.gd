@@ -4,6 +4,7 @@ class_name Player
 
 signal hit
 signal create_turret
+signal upgrades_changed
 
 export var PROJECTILE_SPEED = 500
 export var PROJECTILE_SPRITE_INDEX = 32
@@ -33,9 +34,8 @@ var pattern_plus = preload("res://patterns/plus/PatternPlus.gd")
 var patterns:Array = [pattern_targeted, pattern_random, pattern_plus]
 var upgrades:Array = []
 
-var upgrades_available = 2
 const upgrade_refill = 2
-var next_upgrade_index:int = randi() % patterns.size()
+var next_upgrades:Array = [randi() % patterns.size(), randi() % patterns.size()]
 
 func _ready():
 	player_prefix = "p" + str(player_number) + "_"
@@ -52,34 +52,38 @@ func _process(_delta):
 	else:
 		$AnimatedSprite.stop()
 	
-	if Input.is_action_just_pressed(player_prefix + "upgrade") && upgrades_available:
+	if Input.is_action_just_pressed(player_prefix + "upgrade") && !next_upgrades.empty():
 		assign_upgrade()
 	
-	if Input.is_action_just_pressed(player_prefix + "turret") && upgrades_available:
+	if Input.is_action_just_pressed(player_prefix + "turret") && !next_upgrades.empty():
 		create_turret()
 
-func get_next_pattern():
+func consume_next_pattern():
 	var pattern
+	var next_upgrade_index = next_upgrades.pop_back()
+	
 	if next_upgrade_index == 0:
 		pattern = patterns[next_upgrade_index].new(target_player_collision, target_player)
 	else:
 		pattern = patterns[next_upgrade_index].new(target_player_collision)
 	
-	next_upgrade_index = randi() % patterns.size()
+	emit_signal("upgrades_changed", next_upgrades)
 	return pattern
 
 func assign_upgrade():
-	var upgrade = get_next_pattern()
+	var upgrade = consume_next_pattern()
 	upgrades.append(upgrade)
 	add_child(upgrade)
-	upgrades_available -= 1
 
 func create_turret():
-	emit_signal("create_turret", get_next_pattern(), position)
-	upgrades_available -= 1
+	emit_signal("create_turret", consume_next_pattern(), position)
 	
 func _on_Upgrade_timeout():
-	upgrades_available = upgrade_refill
+	next_upgrades.clear() 
+	for _i in range(upgrade_refill):
+		next_upgrades.push_back(randi() % patterns.size())
+	
+	emit_signal("upgrades_changed", next_upgrades)
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO # The player's movement vector.
