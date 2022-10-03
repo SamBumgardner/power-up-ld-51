@@ -9,6 +9,14 @@
 [node name="Gameplay" type="Node"]
 script = ExtResource( 3 )
 
+[node name="SecretScore" type="Label" parent="."]
+margin_left = 452.0
+margin_top = 70.0
+margin_right = 572.0
+margin_bottom = 85.0
+text = "0"
+align = 1
+
 [node name="Player1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 256, 300 )
 target_player_path = NodePath("../Player2")
