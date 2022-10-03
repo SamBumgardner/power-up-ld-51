@@ -7,6 +7,7 @@ export(NodePath) var player_path
 onready var player:Player = get_node(player_path) as Player
 
 func _ready():
+	max_value = player.max_health
 	if player.player_number == 1:
 		self_modulate = BLUE
 	else:

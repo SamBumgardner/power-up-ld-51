@@ -3,11 +3,12 @@ extends Area2D
 class_name Player
 
 signal hit
+signal kill
 signal create_turret
 signal upgrades_changed
 
 export var speed = 125
-export var max_health = 10
+export var max_health = 5
 var health = max_health
 export var player_number = 1
 export(NodePath) var target_player_path
@@ -116,7 +117,8 @@ func _physics_process(delta):
 # HURT #
 ########
 func _on_Player_area_shape_entered(_area_id, _area, _area_shape, _self_shape):
-	health -= 1
+	if $Recovery.is_stopped():
+		health -= 1
 	if health > 0:
 		emit_signal("hit")
 		_play_SFX_Hurt()
@@ -138,6 +140,7 @@ func kill():
 	for upgrade in upgrades:
 		upgrade.set_process(false)
 		upgrade.set_physics_process(false)
+	emit_signal("kill", player_number)
 
 func _on_Recovery_timeout():
 	$AnimatedSprite.modulate = default_tint

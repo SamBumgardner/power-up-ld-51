@@ -118,7 +118,12 @@ _global_script_class_icons={
 
 config/name="power-up"
 run/main_scene="res://scenes/Gameplay.tscn"
-config/icon="res://art/icon.png"
+config/icon="res://art/player.png"
+
+[display]
+
+window/size/resizable=false
+window/stretch/mode="viewport"
 
 [gui]
 
