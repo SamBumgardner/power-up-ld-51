@@ -18,7 +18,7 @@ onready var target_player = get_node(target_player_path)
 onready var target_player_collision = target_player.get("collision_layer") 
 
 const BLUE = Color(.5, .5, 1, 1)
-const ORANGE = Color(1, .5, .6, 1)
+const ORANGE = Color(1, .7, .6, 1)
 
 var default_tint = Color(1,1,1,1)
 const HURT_TINT = Color(.5,.5,.5,.5)
