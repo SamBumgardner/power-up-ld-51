@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Player.gd" type="Script" id=1]
-[ext_resource path="res://art/icon.png" type="Texture" id=2]
+[ext_resource path="res://art/player.png" type="Texture" id=2]
 [ext_resource path="res://audio/Place_Turret.wav" type="AudioStream" id=3]
 [ext_resource path="res://audio/Upgrade_Self.wav" type="AudioStream" id=4]
 [ext_resource path="res://audio/Explosion_Long.wav" type="AudioStream" id=5]
@@ -17,13 +17,14 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=3]
+radius = 5.0
 
 [node name="Player" type="Area2D"]
 collision_mask = 0
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.75, 0.75 )
+scale = Vector2( 0.45, 0.45 )
 frames = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

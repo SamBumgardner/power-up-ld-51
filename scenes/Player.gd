@@ -3,13 +3,12 @@ extends Area2D
 class_name Player
 
 signal hit
+signal kill
 signal create_turret
 signal upgrades_changed
 
-export var PROJECTILE_SPEED = 500
-export var PROJECTILE_SPRITE_INDEX = 32
-export var speed = 200
-export var max_health = 10
+export var speed = 125
+export var max_health = 5
 var health = max_health
 export var player_number = 1
 export(NodePath) var target_player_path
@@ -17,7 +16,10 @@ export(NodePath) var target_player_path
 onready var target_player = get_node(target_player_path)
 onready var target_player_collision = target_player.get("collision_layer") 
 
-const DEFAULT_TINT = Color(1,1,1,1)
+const BLUE = Color(.5, .5, 1, 1)
+const ORANGE = Color(1, .5, .6, 1)
+
+var default_tint = Color(1,1,1,1)
 const HURT_TINT = Color(.5,.5,.5,.5)
 const RECOVERY_DURATION = 2
 
@@ -44,6 +46,15 @@ func _ready():
 	radius = ($CollisionShape2D.shape as CircleShape2D).radius
 	max_x = screen_size.x - radius
 	max_y = screen_size.y - radius
+	
+	if player_number == 1:
+		default_tint = BLUE
+	else:
+		default_tint = ORANGE
+	
+	$AnimatedSprite.modulate = default_tint
+	pass
+
 
 func _process(_delta):
 	if velocity.length() > 0:
@@ -106,7 +117,8 @@ func _physics_process(delta):
 # HURT #
 ########
 func _on_Player_area_shape_entered(_area_id, _area, _area_shape, _self_shape):
-	health -= 1
+	if $Recovery.is_stopped():
+		health -= 1
 	if health > 0:
 		emit_signal("hit")
 		_play_SFX_Hurt()
@@ -128,9 +140,10 @@ func kill():
 	for upgrade in upgrades:
 		upgrade.set_process(false)
 		upgrade.set_physics_process(false)
+	emit_signal("kill", player_number)
 
 func _on_Recovery_timeout():
-	$AnimatedSprite.modulate = DEFAULT_TINT
+	$AnimatedSprite.modulate = default_tint
 	$CollisionShape2D.set_deferred("disabled", false)
 
 ###############

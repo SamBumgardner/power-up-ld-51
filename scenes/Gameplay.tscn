@@ -22,16 +22,11 @@ target_player_path = NodePath("../Player1")
 [node name="Projectiles" type="Node" parent="."]
 
 [node name="HealthBarP1" parent="." instance=ExtResource( 4 )]
-margin_top = 15.0
-margin_bottom = 0.0
 player_path = NodePath("../Player1")
 
 [node name="HealthBarP2" parent="." instance=ExtResource( 4 )]
-margin_left = 1024.0
-margin_top = 600.0
-margin_right = 14.0
-margin_bottom = 585.0
-rect_rotation = 180.0
+margin_left = 1010.0
+margin_right = 571.0
 player_path = NodePath("../Player2")
 
 [node name="UpgradeProgress" parent="." instance=ExtResource( 2 )]
