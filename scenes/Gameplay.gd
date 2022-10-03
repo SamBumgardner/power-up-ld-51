@@ -37,8 +37,9 @@ func _on_upgrade_consumed():
 #############
 func _game_over(player_number_lost:int):
 	print_debug("game is over, player " + str(player_number_lost) + " was defeated")
-	$UpgradeProgress.pause_mode = Node.PAUSE_MODE_STOP
-	if $Announcement.visible == false:
+	if !$Announcement.visible:
+		get_tree().paused = true
+		$GameOverToResetDelay.start()
 		$Announcement.text = _get_game_over_text(player_number_lost)
 		$Announcement.show()
 
@@ -48,4 +49,17 @@ func _get_game_over_text(player_number_lost:int):
 	if player_number_lost == 1:
 		player_number_won = 2
 
-	return "Game Over\nPlayer " + str(player_number_won) + " Wins!"
+	return "Player " + str(player_number_won) + " Wins!"
+
+
+func _on_GameOverToResetDelay_timeout():
+	# Show prompt to restart game.
+	var textToAppend = ""
+
+	if $Announcement.text != "":
+		textToAppend = "\n"
+
+	textToAppend += "Press Any Key to Restart"
+
+	$Announcement.text += textToAppend
+	$Announcement.show()

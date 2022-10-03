@@ -55,3 +55,10 @@ player_path = NodePath("../Player2")
 position = Vector2( 384, 15 )
 p1_path = NodePath("../Player1")
 p2_path = NodePath("../Player2")
+
+[node name="GameOverToResetDelay" type="Timer" parent="."]
+pause_mode = 2
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="GameOverToResetDelay" to="." method="_on_GameOverToResetDelay_timeout"]
