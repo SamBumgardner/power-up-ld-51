@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/StartMenu.gd" type="Script" id=1]
 [ext_resource path="res://audio/Blip_Select.wav" type="AudioStream" id=2]
+[ext_resource path="res://audio/Blip_Focus.wav" type="AudioStream" id=3]
 
 [node name="StartMenu" type="Control"]
 script = ExtResource( 1 )
@@ -44,8 +45,11 @@ text = "Ludum Dare 51 Game Jam Entry
 by Sam and Noah Bumgardner"
 align = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SFX_Blip_Select" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+
+[node name="SFX_Blip_Focus" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="focus_entered" from="ButtonsContainer/StartButton" to="." method="_on_StartButton_focus_entered"]
 [connection signal="pressed" from="ButtonsContainer/StartButton" to="." method="_on_StartButton_pressed"]
