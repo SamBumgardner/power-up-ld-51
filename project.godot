@@ -122,8 +122,13 @@ config/icon="res://art/player.png"
 
 [display]
 
-window/size/resizable=false
 window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[global]
+
+viewport=false
+resizeable=false
 
 [gui]
 
