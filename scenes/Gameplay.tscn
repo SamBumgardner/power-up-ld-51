@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://hud/UpgradeProgress.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://hud/PlayerHealthBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://hud/NextUpgradeTracker.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/RestartGameControl.gd" type="Script" id=6]
+[ext_resource path="res://audio/Music_Gameplay_Loop_5_Second.ogg" type="AudioStream" id=7]
+[ext_resource path="res://audio/Music_Gameplay_Loop_5_Second_Percussion.wav" type="AudioStream" id=8]
+[ext_resource path="res://scenes/Background_Music.gd" type="Script" id=9]
 
 [node name="Gameplay" type="Node"]
 script = ExtResource( 3 )
@@ -66,5 +69,17 @@ one_shot = true
 pause_mode = 2
 script = ExtResource( 6 )
 
+[node name="Background_Music" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 9 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Background_Music"]
+stream = ExtResource( 8 )
+volume_db = -12.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Background_Music"]
+stream = ExtResource( 7 )
+volume_db = -12.0
+
 [connection signal="timeout" from="GameOverToResetDelay" to="." method="_on_GameOverToResetDelay_timeout"]
 [connection signal="timeout" from="GameOverToResetDelay" to="RestartGameControl" method="_on_GameOverToResetDelay_timeout"]
+[connection signal="finished" from="Background_Music/AudioStreamPlayer" to="Background_Music" method="_on_AudioStreamPlayer_finished"]
