@@ -1,15 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/UpgradeProgress.gd" type="Script" id=2]
+[ext_resource path="res://scenes/UpgradeProgress.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Gameplay.gd" type="Script" id=3]
 [ext_resource path="res://scenes/PlayerHealthBar.tscn" type="PackedScene" id=4]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 1, 1, 1, 1 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 1 )
 
 [node name="Gameplay" type="Node"]
 script = ExtResource( 3 )
@@ -26,20 +20,6 @@ target_player_path = NodePath("../Player1")
 
 [node name="Projectiles" type="Node" parent="."]
 
-[node name="UpgradeProgress" type="ProgressBar" parent="."]
-margin_right = 1024.0
-margin_bottom = 15.0
-grow_horizontal = 2
-size_flags_horizontal = 0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
-percent_visible = false
-script = ExtResource( 2 )
-
-[node name="UpgradeTimer" type="Timer" parent="UpgradeProgress"]
-wait_time = 10.0
-autostart = true
-
 [node name="HealthBarP1" parent="." instance=ExtResource( 4 )]
 margin_top = 15.0
 margin_bottom = 0.0
@@ -52,3 +32,5 @@ margin_right = 14.0
 margin_bottom = 585.0
 rect_rotation = 180.0
 player_path = NodePath("../Player2")
+
+[node name="UpgradeProgress" parent="." instance=ExtResource( 2 )]
