@@ -11,4 +11,3 @@ func _ready():
 	
 	$Player1.connect("create_turret", turret_generator, "_on_create_turret")
 	$Player2.connect("create_turret", turret_generator, "_on_create_turret")
-	

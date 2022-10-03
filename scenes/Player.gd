@@ -8,7 +8,8 @@ signal create_turret
 export var PROJECTILE_SPEED = 500
 export var PROJECTILE_SPRITE_INDEX = 32
 export var speed = 200
-export var health = 10
+export var max_health = 10
+var health = max_health
 export var player_number = 1
 export(NodePath) var target_player_path
 
@@ -92,8 +93,8 @@ func _physics_process(delta):
 		velocity.y -= 1
 	
 	position += velocity * speed * delta;
-	position.x = clamp(position.x, radius, max_x)
-	position.y = clamp(position.y, radius, max_y)
+	position.x = clamp(position.x, radius + 14, max_x - 14)
+	position.y = clamp(position.y, radius + 15, max_y)
 
 ########
 # HURT #
