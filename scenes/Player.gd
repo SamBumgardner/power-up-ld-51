@@ -71,12 +71,14 @@ func consume_next_pattern():
 	return pattern
 
 func assign_upgrade():
+	_play_SFX_Assign_Upgrade()
 	var upgrade = consume_next_pattern()
 	upgrades.append(upgrade)
 	add_child(upgrade)
 
 func create_turret():
 	emit_signal("create_turret", consume_next_pattern(), position)
+	_play_SFX_Create_Turret()
 	
 func _on_Upgrade_timeout():
 	next_upgrades.clear() 
@@ -107,8 +109,10 @@ func _on_Player_area_shape_entered(_area_id, _area, _area_shape, _self_shape):
 	health -= 1
 	if health > 0:
 		emit_signal("hit")
+		_play_SFX_Hurt()
 		hit()
-	else: 
+	else:
+		_play_SFX_Killed()
 		kill()
 
 func hit():
@@ -124,11 +128,25 @@ func kill():
 	for upgrade in upgrades:
 		upgrade.set_process(false)
 		upgrade.set_physics_process(false)
-	
 
 func _on_Recovery_timeout():
 	$AnimatedSprite.modulate = DEFAULT_TINT
 	$CollisionShape2D.set_deferred("disabled", false)
 
+###############
+# SFX Signals #
+###############
+func _play_SFX_Assign_Upgrade():
+	$SFX_Assign_Upgrade.play()
 
+func _play_SFX_Create_Turret():
+	$SFX_Create_Turret.play()
 
+func _play_SFX_Hurt():
+	if player_number == 1:
+		$SFX_Explosion_Middle.play()
+	else:
+		$SFX_Explosion_High.play()
+
+func _play_SFX_Killed():
+	$SFX_Explosion_Long.play()
