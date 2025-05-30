@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bepn8un4wi8mt"]
+[gd_scene load_steps=10 format=3 uid="uid://bepn8un4wi8mt"]
 
 [ext_resource type="Script" uid="uid://cs5t8w2u0hrqk" path="res://scenes/StartMenu.gd" id="1"]
+[ext_resource type="Theme" uid="uid://bamjhy6hiqcxj" path="res://themes/start_menu_theme.tres" id="1_aso40"]
 [ext_resource type="AudioStream" uid="uid://c0yc6ky36xblu" path="res://audio/Blip_Select.wav" id="2"]
 [ext_resource type="Theme" uid="uid://cjkixmil7us47" path="res://themes/start_menu_title_theme.tres" id="2_aso40"]
 [ext_resource type="AudioStream" uid="uid://bbfv5wqegii4" path="res://audio/Blip_Focus.wav" id="3"]
 [ext_resource type="FontFile" uid="uid://bdfox03edvdop" path="res://fonts/Roboto/Roboto-Black.ttf" id="4"]
-[ext_resource type="FontFile" uid="uid://b6a5yhw1xrq0x" path="res://fonts/Roboto/Roboto-Light.ttf" id="5"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("4")])
@@ -37,6 +37,21 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/18/0/ascent = 0.0
+cache/0/18/0/descent = 0.0
+cache/0/18/0/underline_position = 0.0
+cache/0/18/0/underline_thickness = 0.0
+cache/0/18/0/scale = 1.0
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("4")])
@@ -45,18 +60,26 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
-
-[sub_resource type="FontFile" id="2"]
-fallbacks = Array[Font]([ExtResource("5")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/18/0/ascent = 0.0
+cache/0/18/0/descent = 0.0
+cache/0/18/0/underline_position = 0.0
+cache/0/18/0/underline_thickness = 0.0
+cache/0/18/0/scale = 1.0
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_aso40")
 script = ExtResource("1")
 
 [node name="Title" type="Label" parent="."]
@@ -96,7 +119,6 @@ offset_left = 345.0
 offset_top = 317.0
 offset_right = 686.0
 offset_bottom = 378.0
-theme_override_fonts/font = SubResource("2")
 text = "Ludum Dare 51 Game Jam Entry
 by Sam and Noah Bumgardner"
 horizontal_alignment = 1
