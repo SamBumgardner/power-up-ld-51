@@ -20,4 +20,4 @@ func _on_StartButton_focus_entered():
 
 func _on_StartButton_pressed():
 	$SFX_Blip_Select.play()
-	get_tree().change_scene("res://scenes/Gameplay.tscn")
+	get_tree().change_scene_to_file("res://scenes/Gameplay.tscn")

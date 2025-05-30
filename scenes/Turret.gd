@@ -10,6 +10,6 @@ func init(_pattern:PatternBase, _position:Vector2):
 	position = _position
 
 	if (_pattern.bullet_collision_mask % 2 == 0):
-		$AnimatedSprite.modulate = BLUE
+		$AnimatedSprite2D.modulate = BLUE
 	else:
-		$AnimatedSprite.modulate = ORANGE
+		$AnimatedSprite2D.modulate = ORANGE

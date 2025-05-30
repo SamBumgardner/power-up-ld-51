@@ -2,11 +2,11 @@ extends Node2D
 
 class_name PatternBase
 
-export var duration = 1.0
+@export var duration = 1.0
 var total_elapsed = 0
-export(int, LAYERS_2D_PHYSICS) var bullet_collision_mask = 0b0000
+@export var bullet_collision_mask = 0b0000 # (int, LAYERS_2D_PHYSICS)
 
-onready var cannons = get_cannons()
+@onready var cannons = get_cannons()
 
 func _init(_bullet_collision_mask:int):
 	bullet_collision_mask = _bullet_collision_mask
@@ -19,7 +19,7 @@ func _ready():
 	var projectile_pool:ProjectilePool = gameplay_node.get("projectile_pool")
 	
 	for cannon in cannons:
-		cannon.connect("fired_projectile", projectile_pool, "_on_fired_projectile")
+		cannon.connect("fired_projectile", Callable(projectile_pool, "_on_fired_projectile"))
 
 func _physics_process(delta):
 	var end_time = total_elapsed + delta

@@ -14,12 +14,12 @@ func init(spawn_position, spawn_velocity, spawn_collision_mask, sprite_frame):
 	velocity = spawn_velocity
 	collision_layer = 0
 	collision_mask = spawn_collision_mask
-	$AnimatedSprite.frame = sprite_frame
+	$AnimatedSprite2D.frame = sprite_frame
 	# hacky way to color sprites to indicate player allegiance:
 	if (spawn_collision_mask % 2 == 0):
-		$AnimatedSprite.modulate = BLUE
+		$AnimatedSprite2D.modulate = BLUE
 	else:
-		$AnimatedSprite.modulate = ORANGE
+		$AnimatedSprite2D.modulate = ORANGE
 
 func _physics_process(delta):
 	position += velocity * delta

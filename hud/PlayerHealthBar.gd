@@ -3,8 +3,8 @@ extends ProgressBar
 const BLUE = Color(0, 25, 175, 200)
 const ORANGE = Color(225, 50, 0, 200)
 
-export(NodePath) var player_path
-onready var player:Player = get_node(player_path) as Player
+@export var player_path: NodePath
+@onready var player:Player = get_node(player_path) as Player
 
 func _ready():
 	max_value = player.max_health

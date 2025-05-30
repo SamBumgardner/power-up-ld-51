@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 class_name TurretGenerator
 
@@ -10,6 +10,6 @@ func init(parent):
 	turret_template = preload("res://scenes/Turret.tscn")
 
 func _on_create_turret(pattern_node, position):
-	var turret:Turret = turret_template.instance() as Turret
+	var turret:Turret = turret_template.instantiate() as Turret
 	turret.init(pattern_node, position)
 	parent_node.add_child(turret)

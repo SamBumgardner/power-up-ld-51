@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 class_name CannonBase
 
@@ -8,8 +8,8 @@ var pattern_parent:Node2D
 var pattern_duration:float
 var pattern_collision:int
 
-export var projectile_sprite_frame = 0
-export var base_velocity:float = 250
+@export var projectile_sprite_frame = 0
+@export var base_velocity:float = 250
 var projectile_infos:Array
 var calc_vector:Vector2 = Vector2(1, 0)
 

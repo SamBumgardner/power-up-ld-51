@@ -16,12 +16,12 @@ func _ready():
 	$SecretScore.hide()
 	$Announcement.hide()
 
-	$Player1.connect("create_turret", turret_generator, "_on_create_turret")
-	$Player2.connect("create_turret", turret_generator, "_on_create_turret")
-	$Player1.connect("kill", self, "_on_kill")
-	$Player2.connect("kill", self, "_on_kill")
-	$Player1.connect("upgrade_consumed", self, "_on_upgrade_consumed")
-	$Player2.connect("upgrade_consumed", self, "_on_upgrade_consumed")
+	$Player1.connect("create_turret", Callable(turret_generator, "_on_create_turret"))
+	$Player2.connect("create_turret", Callable(turret_generator, "_on_create_turret"))
+	$Player1.connect("kill", Callable(self, "_on_kill"))
+	$Player2.connect("kill", Callable(self, "_on_kill"))
+	$Player1.connect("upgrade_consumed", Callable(self, "_on_upgrade_consumed"))
+	$Player2.connect("upgrade_consumed", Callable(self, "_on_upgrade_consumed"))
 
 func _on_kill(player_number:int):
 	_game_over(player_number)

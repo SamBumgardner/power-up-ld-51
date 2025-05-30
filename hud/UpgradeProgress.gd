@@ -1,8 +1,8 @@
 extends Node2D
 
-onready var timer = $UpgradeTimer as Timer
-onready var left_half = $LeftHalf as ProgressBar
-onready var right_half = $RightHalf as ProgressBar
+@onready var timer = $UpgradeTimer as Timer
+@onready var left_half = $LeftHalf as ProgressBar
+@onready var right_half = $RightHalf as ProgressBar
 
 func _process(_delta):
 	set_progress(left_half)

@@ -9,15 +9,15 @@
 [ext_resource path="res://audio/Music_Gameplay_Loop_5_Second.wav" type="AudioStream" id=7]
 [ext_resource path="res://audio/Music_Gameplay_Loop_5_Second_Percussion.wav" type="AudioStream" id=8]
 [ext_resource path="res://scenes/Background_Music.gd" type="Script" id=9]
-[ext_resource path="res://fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://fonts/Roboto/Roboto-Black.ttf" type="FontFile" id=10]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 font_data = ExtResource( 10 )
 
-[sub_resource type="DynamicFontData" id=2]
+[sub_resource type="FontFile" id=2]
 font_path = "res://fonts/Roboto/Roboto-Black.ttf"
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 48
 font_data = SubResource( 2 )
 
@@ -25,22 +25,22 @@ font_data = SubResource( 2 )
 script = ExtResource( 3 )
 
 [node name="SecretScore" type="Label" parent="."]
-margin_left = 452.0
-margin_top = 70.0
-margin_right = 572.0
-margin_bottom = 85.0
+offset_left = 452.0
+offset_top = 70.0
+offset_right = 572.0
+offset_bottom = 85.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 1 )
+theme_override_fonts/font = SubResource( 1 )
 text = "0"
 align = 1
 
 [node name="Announcement" type="Label" parent="."]
-margin_left = 348.0
-margin_top = 100.0
-margin_right = 680.0
-margin_bottom = 157.0
+offset_left = 348.0
+offset_top = 100.0
+offset_right = 680.0
+offset_bottom = 157.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource( 3 )
 text = "Game Over"
 align = 1
 
@@ -60,8 +60,8 @@ target_player_path = NodePath("../Player1")
 player_path = NodePath("../Player1")
 
 [node name="HealthBarP2" parent="." instance=ExtResource( 4 )]
-margin_left = 1010.0
-margin_right = 571.0
+offset_left = 1010.0
+offset_right = 571.0
 player_path = NodePath("../Player2")
 
 [node name="UpgradeProgress" parent="." instance=ExtResource( 2 )]
@@ -72,12 +72,12 @@ p1_path = NodePath("../Player1")
 p2_path = NodePath("../Player2")
 
 [node name="GameOverToResetDelay" type="Timer" parent="."]
-pause_mode = 2
+process_mode = 3
 wait_time = 1.5
 one_shot = true
 
 [node name="RestartGameControl" type="Node" parent="."]
-pause_mode = 2
+process_mode = 3
 script = ExtResource( 6 )
 
 [node name="Background_Music" type="AudioStreamPlayer" parent="."]

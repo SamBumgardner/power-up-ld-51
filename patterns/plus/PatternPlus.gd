@@ -2,7 +2,8 @@ extends PatternBase
 
 class_name PatternPlus
 
-func _init(_bullet_collision_mask:int).(_bullet_collision_mask):
+func _init(_bullet_collision_mask:int):
+	super(_bullet_collision_mask)
 	duration = 5
 
 func get_cannons():

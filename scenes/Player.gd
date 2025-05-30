@@ -8,14 +8,14 @@ signal create_turret
 signal upgrade_consumed
 signal upgrades_changed
 
-export var speed = 125
-export var max_health = 5
-onready var health = max_health
-export var player_number = 1
-export(NodePath) var target_player_path
+@export var speed = 125
+@export var max_health = 5
+@onready var health = max_health
+@export var player_number = 1
+@export var target_player_path: NodePath
 
-onready var target_player = get_node(target_player_path)
-onready var target_player_collision = target_player.get("collision_layer") 
+@onready var target_player = get_node(target_player_path)
+@onready var target_player_collision = target_player.get("collision_layer") 
 
 const BLUE = Color(.5, .5, 1, 1)
 const ORANGE = Color(1, .7, .6, 1)
@@ -53,21 +53,21 @@ func _ready():
 	else:
 		default_tint = ORANGE
 	
-	$AnimatedSprite.modulate = default_tint
+	$AnimatedSprite2D.modulate = default_tint
 	pass
 
 
 func _process(_delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		$AnimatedSprite.play()
+		$AnimatedSprite2D.play()
 	else:
-		$AnimatedSprite.stop()
+		$AnimatedSprite2D.stop()
 	
-	if Input.is_action_just_pressed(player_prefix + "upgrade") && !next_upgrades.empty():
+	if Input.is_action_just_pressed(player_prefix + "upgrade") && !next_upgrades.is_empty():
 		assign_upgrade()
 	
-	if Input.is_action_just_pressed(player_prefix + "turret") && !next_upgrades.empty():
+	if Input.is_action_just_pressed(player_prefix + "turret") && !next_upgrades.is_empty():
 		create_turret()
 
 func consume_next_pattern():
@@ -131,7 +131,7 @@ func _on_Player_area_shape_entered(_area_id, _area, _area_shape, _self_shape):
 
 func hit():
 	$Recovery.start(RECOVERY_DURATION)
-	$AnimatedSprite.modulate = HURT_TINT
+	$AnimatedSprite2D.modulate = HURT_TINT
 	$CollisionShape2D.set_deferred("disabled", true)
 
 func kill():
@@ -145,7 +145,7 @@ func kill():
 	emit_signal("kill", player_number)
 
 func _on_Recovery_timeout():
-	$AnimatedSprite.modulate = default_tint
+	$AnimatedSprite2D.modulate = default_tint
 	$CollisionShape2D.set_deferred("disabled", false)
 
 ###############
