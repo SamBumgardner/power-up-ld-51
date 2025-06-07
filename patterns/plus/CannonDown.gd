@@ -2,8 +2,8 @@ extends CannonBase
 
 class_name CannonDown
 
-func _init(_pattern_parent:Node2D, _pattern_duration:float, _pattern_collision:int, _projectile_infos:Array) \
-		.(_pattern_parent, _pattern_duration, _pattern_collision, _projectile_infos):
+func _init(_pattern_parent:Node2D, _pattern_duration:float,
+		_pattern_collision:int, _projectile_infos:Array):
 	pass
 
 func populate_velocity(projectile_info:ProjectileInfo):
