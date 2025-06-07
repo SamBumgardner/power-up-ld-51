@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=4 uid="uid://dtef1vxcw0h0n"]
 
-[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://1q57b8pabca1" path="res://scenes/Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://rnnidaqgshc2" path="res://hud/UpgradeProgress.tscn" id="2"]
 [ext_resource type="Script" uid="uid://d1r565f4hyg7s" path="res://scenes/Gameplay.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://b3avdfbsoewf" path="res://hud/PlayerHealthBar.tscn" id="4"]
@@ -129,13 +129,13 @@ target_player_path = NodePath("../Player1")
 [node name="Projectiles" type="Node" parent="."]
 
 [node name="HealthBarP1" parent="." instance=ExtResource("4")]
-anchors_preset = 15
+rotation = -1.5708
 player_path = NodePath("../Player1")
 
 [node name="HealthBarP2" parent="." instance=ExtResource("4")]
-anchors_preset = 15
 offset_left = 1010.0
 offset_right = 571.0
+rotation = -1.5708
 player_path = NodePath("../Player2")
 
 [node name="UpgradeProgress" parent="." instance=ExtResource("2")]

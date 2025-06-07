@@ -21,5 +21,5 @@ offset_top = 15.0
 offset_right = 1536.0
 offset_bottom = 30.0
 grow_horizontal = 2
-rotation = 180.0
+rotation = 3.14159
 size_flags_horizontal = 0
