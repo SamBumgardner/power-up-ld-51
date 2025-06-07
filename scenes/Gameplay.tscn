@@ -139,6 +139,7 @@ rotation = -1.5708
 player_path = NodePath("../Player2")
 
 [node name="UpgradeProgress" parent="." instance=ExtResource("2")]
+offset_bottom = 15.0
 
 [node name="NextUpgradeTracker" parent="." instance=ExtResource("5")]
 position = Vector2(384, 15)
