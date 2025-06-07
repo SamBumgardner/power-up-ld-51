@@ -142,7 +142,10 @@ player_path = NodePath("../Player2")
 offset_bottom = 15.0
 
 [node name="NextUpgradeTracker" parent="." instance=ExtResource("5")]
-position = Vector2(384, 15)
+offset_left = 384.0
+offset_top = 15.0
+offset_right = 384.0
+offset_bottom = 15.0
 p1_path = NodePath("../Player1")
 p2_path = NodePath("../Player2")
 

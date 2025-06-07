@@ -35,12 +35,11 @@ animations = [{
 "speed": 0.0
 }]
 
-[node name="NextUpgradeTracker" type="Node2D"]
+[node name="NextUpgradeTracker" type="MarginContainer"]
 script = ExtResource("5")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="BackgroundLeft" type="TextureRect" parent="HBoxContainer"]
