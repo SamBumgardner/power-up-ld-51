@@ -2,7 +2,7 @@ extends TextureRect
 
 @export var player_number:int
 @export var parent_path: NodePath
-@onready var event_publisher_path = "../" + str(get_node(parent_path).get("p" + str(player_number) + "_path"))
+@onready var event_publisher_path = "../../" + str(get_node(parent_path).get("p" + str(player_number) + "_path"))
 @onready var event_publisher:Player = get_node(event_publisher_path)
 
 @onready var sprites:Array = [$SecondUpgrade, $FirstUpgrade]
