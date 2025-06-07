@@ -2,6 +2,9 @@ extends Node
 
 class_name Gameplay
 
+@onready var announcement_label = $HUD/MarginContainer/HBoxContainer/VBoxContainer/Announcement as Label
+@onready var secret_score_label = $HUD/MarginContainer/HBoxContainer/VBoxContainer/SecretScore as Label
+
 var projectile_pool = preload("res://ProjectilePool.gd").new()
 var turret_generator = preload("res://TurretGenerator.gd").new()
 
@@ -11,10 +14,10 @@ func _ready():
 	projectile_pool.init(self)
 	turret_generator.init(self)
 
-	$Announcement.text = ""
+	announcement_label.text = ""
 
-	$SecretScore.hide()
-	$Announcement.hide()
+	secret_score_label.hide()
+	announcement_label.hide()
 
 	$Player1.connect("create_turret", Callable(turret_generator, "_on_create_turret"))
 	$Player2.connect("create_turret", Callable(turret_generator, "_on_create_turret"))
@@ -28,20 +31,20 @@ func _on_kill(player_number:int):
 
 func _on_upgrade_consumed():
 	secret_score += 1
-	$SecretScore.text = str(secret_score)
+	secret_score_label.text = str(secret_score)
 	if secret_score > 20:
-		$SecretScore.show()
+		secret_score_label.show()
 
 #############
 # GAME OVER #
 #############
 func _game_over(player_number_lost:int):
 	print_debug("game is over, player " + str(player_number_lost) + " was defeated")
-	if !$Announcement.visible:
+	if !announcement_label.visible:
 		get_tree().paused = true
 		$GameOverToResetDelay.start()
-		$Announcement.text = _get_game_over_text(player_number_lost)
-		$Announcement.show()
+		announcement_label.text = _get_game_over_text(player_number_lost)
+		announcement_label.show()
 
 func _get_game_over_text(player_number_lost:int):
 	# Get remaining player number out of 2 players.
@@ -56,10 +59,10 @@ func _on_GameOverToResetDelay_timeout():
 	# Show prompt to restart game.
 	var textToAppend = ""
 
-	if $Announcement.text != "":
+	if announcement_label.text != "":
 		textToAppend = "\n"
 
 	textToAppend += "Press Any Key to Restart"
 
-	$Announcement.text += textToAppend
-	$Announcement.show()
+	announcement_label.text += textToAppend
+	announcement_label.show()

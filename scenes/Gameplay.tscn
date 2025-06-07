@@ -96,26 +96,6 @@ cache/0/16/0/scale = 1.0
 [node name="Gameplay" type="Node"]
 script = ExtResource("3")
 
-[node name="SecretScore" type="Label" parent="."]
-offset_left = 452.0
-offset_top = 70.0
-offset_right = 572.0
-offset_bottom = 85.0
-grow_horizontal = 2
-theme_override_fonts/font = SubResource("1")
-text = "0"
-horizontal_alignment = 1
-
-[node name="Announcement" type="Label" parent="."]
-offset_left = 348.0
-offset_top = 100.0
-offset_right = 680.0
-offset_bottom = 157.0
-grow_horizontal = 2
-theme_override_fonts/font = SubResource("3")
-text = "Game Over"
-horizontal_alignment = 1
-
 [node name="Player1" parent="." instance=ExtResource("1")]
 position = Vector2(256, 300)
 target_player_path = NodePath("../Player2")
@@ -128,26 +108,65 @@ target_player_path = NodePath("../Player1")
 
 [node name="Projectiles" type="Node" parent="."]
 
-[node name="HealthBarP1" parent="." instance=ExtResource("4")]
-rotation = -1.5708
-player_path = NodePath("../Player1")
+[node name="HUD" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
 
-[node name="HealthBarP2" parent="." instance=ExtResource("4")]
-offset_left = 1010.0
-offset_right = 571.0
-rotation = -1.5708
-player_path = NodePath("../Player2")
+[node name="UpgradeProgress" parent="HUD" instance=ExtResource("2")]
+layout_mode = 2
+size_flags_vertical = 1
 
-[node name="UpgradeProgress" parent="." instance=ExtResource("2")]
-offset_bottom = 15.0
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+layout_mode = 2
+size_flags_vertical = 3
 
-[node name="NextUpgradeTracker" parent="." instance=ExtResource("5")]
-offset_left = 384.0
-offset_top = 15.0
-offset_right = 384.0
-offset_bottom = 15.0
-p1_path = NodePath("../Player1")
-p2_path = NodePath("../Player2")
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="HealthBarP1" parent="HUD/MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("4")]
+layout_mode = 2
+size_flags_vertical = 1
+player_path = NodePath("../../../../../Player1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="NextUpgradeTracker" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5")]
+layout_mode = 2
+size_flags_horizontal = 4
+p1_path = NodePath("../../../../../Player1")
+p2_path = NodePath("../../../../../Player2")
+
+[node name="SecretScore" type="Label" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("1")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Announcement" type="Label" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("3")
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="HealthBarP2" parent="HUD/MarginContainer/HBoxContainer/MarginContainer2" instance=ExtResource("4")]
+layout_mode = 2
+size_flags_vertical = 1
+player_path = NodePath("../../../../../Player2")
 
 [node name="GameOverToResetDelay" type="Timer" parent="."]
 process_mode = 3
