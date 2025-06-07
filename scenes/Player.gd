@@ -41,6 +41,10 @@ const upgrade_refill = 2
 var next_upgrades:Array = [randi() % patterns.size(), randi() % patterns.size()]
 
 func _ready():
+	create_turret.connect(_on_create_turret)
+	hit.connect(_on_hit)
+	kill.connect(_on_kill)
+
 	player_prefix = "p" + str(player_number) + "_"
 	velocity = Vector2.ZERO
 	screen_size = get_viewport_rect().size
@@ -68,7 +72,7 @@ func _process(_delta):
 		assign_upgrade()
 	
 	if Input.is_action_just_pressed(player_prefix + "turret") && !next_upgrades.is_empty():
-		create_turret()
+		_on_create_turret()
 
 func consume_next_pattern():
 	var pattern
@@ -89,7 +93,7 @@ func assign_upgrade():
 	upgrades.append(upgrade)
 	add_child(upgrade)
 
-func create_turret():
+func _on_create_turret():
 	emit_signal("create_turret", consume_next_pattern(), position)
 	_play_SFX_Create_Turret()
 	
@@ -124,17 +128,17 @@ func _on_Player_area_shape_entered(_area_id, _area, _area_shape, _self_shape):
 	if health > 0:
 		emit_signal("hit")
 		_play_SFX_Hurt()
-		hit()
+		_on_hit()
 	else:
 		_play_SFX_Killed()
-		kill()
+		_on_kill()
 
-func hit():
+func _on_hit():
 	$Recovery.start(RECOVERY_DURATION)
 	$AnimatedSprite2D.modulate = HURT_TINT
 	$CollisionShape2D.set_deferred("disabled", true)
 
-func kill():
+func _on_kill():
 	hide()
 	$CollisionShape2D.set_deferred("disabled", true)
 	set_process(false)
