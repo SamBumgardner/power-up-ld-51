@@ -41,10 +41,6 @@ const upgrade_refill = 2
 var next_upgrades:Array = [randi() % patterns.size(), randi() % patterns.size()]
 
 func _ready():
-	create_turret.connect(_on_create_turret)
-	hit.connect(_on_hit)
-	kill.connect(_on_kill)
-
 	player_prefix = "p" + str(player_number) + "_"
 	velocity = Vector2.ZERO
 	screen_size = get_viewport_rect().size
