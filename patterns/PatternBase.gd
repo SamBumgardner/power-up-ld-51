@@ -19,12 +19,15 @@ func _ready():
 	var projectile_pool:ProjectilePool = gameplay_node.get("projectile_pool")
 	
 	for cannon in cannons:
+		# Last log made before game crashed after DEBUG07 was commented out.
+		# print_debug('DEBUG03 cannon:', cannon)
 		cannon.connect("fired_projectile", Callable(projectile_pool, "_on_fired_projectile"))
 
 func _physics_process(delta):
 	var end_time = total_elapsed + delta
 	
 	for cannon in cannons:
+		# print_debug('DEBUG04 trying to shoot at time:', total_elapsed)
 		cannon.try_shoot(total_elapsed, end_time)
 	
 	total_elapsed = end_time

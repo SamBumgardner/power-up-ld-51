@@ -87,7 +87,9 @@ func assign_upgrade():
 	_play_SFX_Assign_Upgrade()
 	var upgrade = consume_next_pattern()
 	upgrades.append(upgrade)
+	print_debug('DEBUG01 upgrades:', upgrades)
 	add_child(upgrade)
+	print_debug('DEBUG02 children:', get_children())
 
 func _on_create_turret():
 	emit_signal("create_turret", consume_next_pattern(), position)
