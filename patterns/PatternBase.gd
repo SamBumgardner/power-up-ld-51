@@ -9,7 +9,6 @@ var total_elapsed = 0
 @onready var cannons = get_cannons()
 
 func _init(_bullet_collision_mask:int):
-	print('DEBUG41 _bullet_collision_mask:', _bullet_collision_mask)
 	bullet_collision_mask = _bullet_collision_mask
 
 func get_cannons():
