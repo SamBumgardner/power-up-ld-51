@@ -11,6 +11,7 @@ var turret_generator:TurretGenerator = preload("res://TurretGenerator.gd").new()
 var secret_score:int = 0
 
 func _ready():
+	print('DEBUG11 self:', self)
 	projectile_pool.init(self)
 	turret_generator.init(self)
 

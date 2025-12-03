@@ -14,15 +14,21 @@ var projectile_infos:Array
 var calc_vector:Vector2 = Vector2(1, 0)
 
 func _init(_pattern_parent:Node2D, _pattern_duration:float, _pattern_collision:int, _projectile_infos:Array):
+	print('DEBUG31 _pattern_parent:', _pattern_parent, '_pattern_duration:', _pattern_duration, '_pattern_collision:', _pattern_collision, '_projectile_infos:', _projectile_infos)
 	pattern_parent = _pattern_parent
 	pattern_duration = _pattern_duration
 	pattern_collision = _pattern_collision
 	
 	projectile_infos = _projectile_infos
+	print('DEBUG31 projectile_infos:', projectile_infos)
 	pass
 
 func try_shoot(start_time, end_time):
+	# Rapidly called, seems to cycle back to 0 every second.
+	# print('DEBUG31 start_time:', start_time, 'end_time:', end_time)
 	for projectile_info in projectile_infos:
+		# Never called.
+		print('DEBUG32')
 		if (start_time < projectile_info.shoot_time and end_time > projectile_info.shoot_time) \
 				or (end_time > pattern_duration and fmod(end_time, pattern_duration)  > projectile_info.shoot_time):
 			
