@@ -5,8 +5,8 @@ class_name Gameplay
 @onready var announcement_label = $HUD/MarginContainer/HBoxContainer/VBoxContainer/Announcement as Label
 @onready var secret_score_label = $HUD/MarginContainer/HBoxContainer/VBoxContainer/SecretScore as Label
 
-var projectile_pool = preload("res://ProjectilePool.gd").new()
-var turret_generator = preload("res://TurretGenerator.gd").new()
+var projectile_pool:ProjectilePool = preload("res://ProjectilePool.gd").new()
+var turret_generator:TurretGenerator = preload("res://TurretGenerator.gd").new()
 
 var secret_score:int = 0
 

@@ -2,8 +2,8 @@ extends RefCounted
 
 class_name TurretGenerator
 
-var parent_node
-var turret_template
+var parent_node:Gameplay
+var turret_template:PackedScene
 
 func init(parent):
 	parent_node = parent
