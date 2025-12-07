@@ -1,5 +1,6 @@
 extends Node2D
 
+## Base pattern class that may fire bullets every second.
 class_name PatternBase
 
 @export var duration = 1.0

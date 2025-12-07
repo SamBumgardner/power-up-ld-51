@@ -1,5 +1,9 @@
 extends RefCounted
 
+## Class to simplify creating a turret.
+##
+## Usually accepts a pattern of bullets and the current position of a
+##  player.
 class_name TurretGenerator
 
 var parent_node:Gameplay

@@ -1,5 +1,6 @@
 extends Node
 
+## Class to manage starting, ending, and restarting gameplay.
 class_name Gameplay
 
 @onready var announcement_label = $HUD/MarginContainer/HBoxContainer/VBoxContainer/Announcement as Label

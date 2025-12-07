@@ -1,5 +1,11 @@
 extends RefCounted
 
+## Base cannon class to try firing one bullet at a time.
+##
+## How often and in which direction bullets fire is usually defined by
+##  an extension of [PatternBase].
+## Complex patterns may be defined with a list of cannons deciding
+##  individual bullet vectors.
 class_name CannonBase
 
 signal fired_projectile

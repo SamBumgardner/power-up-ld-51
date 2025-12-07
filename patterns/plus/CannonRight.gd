@@ -1,5 +1,6 @@
 extends CannonBase
 
+## Cannon class to try firing one bullet right/East.
 class_name CannonRight
 
 func _init(_pattern_parent:Node2D, _pattern_duration:float,

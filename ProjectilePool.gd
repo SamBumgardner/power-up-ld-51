@@ -1,5 +1,7 @@
 extends RefCounted
 
+## Defines a pool of projectiles to enhance game performance of
+##  bullets.
 class_name ProjectilePool
 
 var parent_node:Node

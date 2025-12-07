@@ -1,5 +1,24 @@
 extends Area2D
 
+## Player class for a player to play as.
+##
+## Defines player characteristics for health, speed, and player number.
+## [br]
+##
+## [b]Abilities of the player:[/b] [br]
+##
+## - May move orthogonally or diagonally with 4 cardinal directions.
+## [br]
+## - May assign upgrades to itself to automatically shoot at another
+##  player over time. [br]
+## - May create stationary turrets to automatically shoot at another
+##  player over time. [br]
+##
+## [b]Reactions of the player:[/b] [br]
+##
+## - May take damage when running into another player's bullets. [br]
+## - May play sound effects for non-movement game actions and getting
+##  hit.
 class_name Player
 
 signal hit

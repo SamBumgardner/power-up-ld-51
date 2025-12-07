@@ -1,5 +1,7 @@
 extends RefCounted
 
+## Class to define when to shoot a projectile and at what constant
+##  speed.
 class_name ProjectileInfo
 
 var shoot_time:float

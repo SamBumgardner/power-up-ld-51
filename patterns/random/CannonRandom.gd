@@ -1,5 +1,6 @@
 extends CannonBase
 
+## Cannon class to try firing one bullet in a random direction.
 class_name CannonRandom
 
 func _init(_pattern_parent:Node2D, _pattern_duration:float,

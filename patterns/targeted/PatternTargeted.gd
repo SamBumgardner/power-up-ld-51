@@ -1,5 +1,7 @@
 extends PatternBase
 
+## Pattern class to fire a slow bullet toward a target node every
+##  second.
 class_name PatternTargeted
 
 var targetNode:Node2D

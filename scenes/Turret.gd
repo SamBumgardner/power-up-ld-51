@@ -1,5 +1,15 @@
 extends Node2D
 
+## Class to define a stationary turret aligned to 1 player that shoots
+##  bullets in a pattern.
+##
+## Turrents and their bullets match the color of the player who placed
+##  the turret. [br]
+##
+## [b]Colors by player are:[/b] [br]
+##
+## - Player 1 is [constant BLUE]. [br]
+## - Player 2 is [constant ORANGE]. [br]
 class_name Turret
 
 const BLUE = Color(.5, .5, 1, 1)

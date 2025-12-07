@@ -1,5 +1,7 @@
 extends CannonBase
 
+## Cannon class to try firing bullets.
+## Usually uses a [PatternTargeted] pattern.
 class_name CannonTargeted
 
 var target_node:Node2D
