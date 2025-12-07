@@ -16,6 +16,4 @@ func init(parent:Node):
 func _on_fired_projectile(position, velocity, collision_mask, sprite_frame):
 	var projectile = projectiles.instantiate()
 	projectile.init(position, velocity, collision_mask, sprite_frame)
-	if (parent_node != null):
-		# Crashes the game when try to fire a projectile.
-		parent_node.add_sibling(projectile_node, projectile)
+	parent_node.add_sibling(projectile_node, projectile)

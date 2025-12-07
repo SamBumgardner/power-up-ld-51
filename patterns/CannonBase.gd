@@ -28,23 +28,11 @@ func _init(_pattern_parent:Node2D, _pattern_duration:float, _pattern_collision:i
 	pass
 
 func try_shoot(start_time, end_time):
-	if projectile_infos.is_empty():
-		var mock_projectile = ProjectileInfo.new(1, 1)
-		var mock_vector = Vector2.RIGHT.rotated(randf() * PI * 2)
-		var mock_velocity = mock_vector * base_velocity * mock_projectile.speed
-		mock_projectile.velocity = mock_velocity
-		projectile_infos.push_back(mock_projectile)
-
 	for projectile_info in projectile_infos:
 		if (start_time < projectile_info.shoot_time and end_time > projectile_info.shoot_time) \
 				or (end_time > pattern_duration and fmod(end_time, pattern_duration)  > projectile_info.shoot_time):
 			
 			populate_velocity(projectile_info)
-
-			if pattern_parent == null:
-				pattern_parent = Node2D.new()
-				var mock_vector = Vector2.RIGHT.rotated(randf() * PI * 2)
-				pattern_parent.global_position = mock_vector
 			
 			emit_signal("fired_projectile", pattern_parent.global_position, 
 				projectile_info.velocity, pattern_collision,
