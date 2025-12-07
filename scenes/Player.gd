@@ -50,13 +50,20 @@ var radius
 var max_x
 var max_y
 
+## Possible upgrade to target an enemy player.
 var pattern_targeted = preload("res://patterns/targeted/PatternTargeted.gd")
+## Possible upgrade to shoot randomly.
 var pattern_random = preload("res://patterns/random/PatternRandom.gd")
+## Possible upgrade to shoot in a plus sign shape.
 var pattern_plus = preload("res://patterns/plus/PatternPlus.gd")
+## List of possible upgrades defined as bullet patterns.
 var patterns:Array = [pattern_targeted, pattern_random, pattern_plus]
+## Upgrades used on the player themself.
 var upgrades:Array = []
 
+## Maximum number of the player's available unused upgrades.
 const upgrade_refill = 2
+## Available upgrades to be used.
 var next_upgrades:Array = [randi() % patterns.size(), randi() % patterns.size()]
 
 func _ready():
@@ -89,6 +96,8 @@ func _process(_delta):
 	if Input.is_action_just_pressed(player_prefix + "turret") && !next_upgrades.is_empty():
 		_on_create_turret()
 
+## Removes and returns the player's next available upgrade to be used
+##  in another method.
 func consume_next_pattern():
 	var pattern
 	var next_upgrade_index = next_upgrades.pop_back()
@@ -102,16 +111,21 @@ func consume_next_pattern():
 	emit_signal("upgrades_changed", next_upgrades)
 	return pattern
 
+## Uses up the player's next available upgrade to upgrade themself as a
+##  player.
 func assign_upgrade():
 	_play_SFX_Assign_Upgrade()
 	var upgrade = consume_next_pattern()
 	upgrades.append(upgrade)
 	add_child(upgrade)
 
+## Uses up the player's next available upgrade to set down a turret
+##  aligned to the player's own team.
 func _on_create_turret():
 	emit_signal("create_turret", consume_next_pattern(), position)
 	_play_SFX_Create_Turret()
 	
+## Empty and refill the player's available unused upgrades.
 func _on_Upgrade_timeout():
 	next_upgrades.clear() 
 	for _i in range(upgrade_refill):
