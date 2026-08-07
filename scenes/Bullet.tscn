@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bph5i04kcvtno"]
+[gd_scene format=3 uid="uid://bph5i04kcvtno"]
 
 [ext_resource type="Texture2D" uid="uid://rg6xatohh01d" path="res://art/bullet.png" id="1"]
 [ext_resource type="Script" uid="uid://bg3xgt6t2vwxl" path="res://scenes/Bullet.gd" id="2"]
@@ -9,7 +9,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 1.0
 }]
@@ -17,14 +17,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="1"]
 radius = 5.0
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" unique_id=1958253916]
 script = ExtResource("2")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1818657650]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=998748820]
 shape = SubResource("1")
 
 [connection signal="area_shape_entered" from="." to="." method="_on_Bullet_area_shape_entered"]

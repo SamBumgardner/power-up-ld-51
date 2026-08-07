@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4u0udjcqt2x2"]
+[gd_scene format=3 uid="uid://c4u0udjcqt2x2"]
 
 [ext_resource type="Texture2D" uid="uid://dp3cm2bgohgox" path="res://art/Turret.png" id="1"]
 [ext_resource type="Script" uid="uid://v0vpnvr5aswo" path="res://scenes/Turret.gd" id="2"]
@@ -9,14 +9,14 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=2008561056]
 script = ExtResource("2")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=60596748]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("1")

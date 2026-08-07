@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b458kureux4kl"]
+[gd_scene format=3 uid="uid://b458kureux4kl"]
 
 [ext_resource type="Texture2D" uid="uid://v87v01dmxqr5" path="res://art/plus_powerup.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://2wjkdq3gda6f" path="res://art/random_powerup.png" id="2"]
@@ -30,36 +30,36 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 0.0
 }]
 
-[node name="NextUpgradeTracker" type="MarginContainer"]
+[node name="NextUpgradeTracker" type="MarginContainer" unique_id=1047597288]
 script = ExtResource("5")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1521809380]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="BackgroundLeft" type="TextureRect" parent="HBoxContainer"]
+[node name="BackgroundLeft" type="TextureRect" parent="HBoxContainer" unique_id=239401897]
 layout_mode = 2
 texture = SubResource("2")
 script = ExtResource("4")
 player_number = 1
 parent_path = NodePath("../..")
 
-[node name="FirstUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundLeft"]
+[node name="FirstUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundLeft" unique_id=562079330]
 position = Vector2(100, 24)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("3")
 
-[node name="SecondUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundLeft"]
+[node name="SecondUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundLeft" unique_id=1650621074]
 position = Vector2(56, 24)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("3")
 
-[node name="BackgroundRight" type="TextureRect" parent="HBoxContainer"]
+[node name="BackgroundRight" type="TextureRect" parent="HBoxContainer" unique_id=1940284777]
 layout_mode = 2
 texture = SubResource("2")
 flip_h = true
@@ -67,12 +67,12 @@ script = ExtResource("4")
 player_number = 2
 parent_path = NodePath("../..")
 
-[node name="FirstUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundRight"]
+[node name="FirstUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundRight" unique_id=1268625437]
 position = Vector2(28, 24)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("3")
 
-[node name="SecondUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundRight"]
+[node name="SecondUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundRight" unique_id=976226145]
 position = Vector2(72, 24)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("3")
