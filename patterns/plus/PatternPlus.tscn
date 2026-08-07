@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5jm3qanvjy0c"]
+[gd_scene format=3 uid="uid://c5jm3qanvjy0c"]
 
-[ext_resource type="PackedScene" path="res://patterns/PatternBase.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://btkup45lf688h" path="res://patterns/PatternBase.tscn" id="1"]
 [ext_resource type="Script" uid="uid://dh3c5sik8od2y" path="res://patterns/plus/PatternPlus.gd" id="2"]
 
-[node name="Node2D" instance=ExtResource("1")]
+[node name="Node2D" unique_id=918144780 instance=ExtResource("1")]
 script = ExtResource("2")
