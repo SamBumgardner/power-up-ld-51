@@ -10,13 +10,15 @@ class_name CannonBase
 
 signal fired_projectile
 
-var pattern_parent:Node2D
+var pattern_parent:Node2D = Node2D.new()
 var pattern_duration:float
 var pattern_collision:int
 
 @export var projectile_sprite_frame = 0
 @export var base_velocity:float = 250
-var projectile_infos:Array
+var projectile_infos:Array = [
+	ProjectileInfo.new(1, 1)
+]
 var calc_vector:Vector2 = Vector2(1, 0)
 
 func _init(_pattern_parent:Node2D, _pattern_duration:float, _pattern_collision:int, _projectile_infos:Array):
