@@ -3,15 +3,15 @@ extends Area2D
 signal hit
 signal fired_projectile
 
-export var PROJECTILE_SPEED = 500
-export var PROJECTILE_SPRITE_INDEX = 32
-export var speed = 200
-export var health = 10
-export var player_number = 1
-export(NodePath) var target_player_path
+@export var PROJECTILE_SPEED = 500
+@export var PROJECTILE_SPRITE_INDEX = 32
+@export var speed = 200
+@export var health = 10
+@export var player_number = 1
+@export var target_player_path: NodePath
 
-onready var target_player = get_node(target_player_path)
-onready var target_player_collision = target_player.get("collision_layer") 
+@onready var target_player = get_node(target_player_path)
+@onready var target_player_collision = target_player.get("collision_layer") 
 
 const DEFAULT_TINT = Color(1,1,1,1)
 const HURT_TINT = Color(.5,.5,.5,.5)
@@ -61,11 +61,11 @@ func _on_Player_area_shape_entered(_area_id, _area, _area_shape, _self_shape):
 	health -= 1
 	if health > 0:
 		emit_signal("hit")
-		hit()
+		_hit()
 	else: 
 		kill()
 
-func hit():
+func _hit():
 	$Recovery.start(RECOVERY_DURATION)
 	$AnimatedSprite.modulate = HURT_TINT
 	$CollisionShape2D.set_deferred("disabled", true)
