@@ -9,15 +9,21 @@ var total_elapsed = 0
 
 @onready var cannons = get_cannons()
 
-func _init(_bullet_collision_mask:int):
+func _init(_bullet_collision_mask:int = 0b0000):
 	bullet_collision_mask = _bullet_collision_mask
 
 func get_cannons():
 	return []
 
 func _ready():
-	var gameplay_node:Node = get_node("/root/Gameplay")
-	var projectile_pool:ProjectilePool = gameplay_node.get("projectile_pool")
+	var gameplay_node:Node = get_node_or_null("/root/Gameplay")
+	var projectile_pool:ProjectilePool
+
+	if gameplay_node:
+		projectile_pool = gameplay_node.get("projectile_pool")
+	else:
+		print_debug('WARNING: Creating a ProjectilePool.gd locally for debugging PatternBase.gd.')
+		projectile_pool = preload("res://ProjectilePool.gd").new()
 	
 	for cannon in cannons:
 		cannon.connect("fired_projectile", Callable(projectile_pool, "_on_fired_projectile"))
