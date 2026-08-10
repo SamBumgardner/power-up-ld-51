@@ -9,7 +9,7 @@ var total_elapsed = 0
 
 @onready var cannons = get_cannons()
 
-func _init(_bullet_collision_mask:int = 0b0000):
+func _init(_bullet_collision_mask:int):
 	bullet_collision_mask = _bullet_collision_mask
 
 func get_cannons():
@@ -17,10 +17,6 @@ func get_cannons():
 
 func _ready():
 	var gameplay_node:Node = get_node("/root/Gameplay")
-	
-	if not gameplay_node:
-		print_debug("Warning: Running a PatternBase.gd by itself is not supported.")
-	
 	var projectile_pool:ProjectilePool = gameplay_node.get("projectile_pool")
 	
 	for cannon in cannons:
