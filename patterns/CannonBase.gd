@@ -25,7 +25,6 @@ func _init(_pattern_parent:Node2D, _pattern_duration:float, _pattern_collision:i
 	pattern_collision = _pattern_collision
 	
 	projectile_infos = _projectile_infos
-	pass
 
 func try_shoot(start_time, end_time):
 	for projectile_info in projectile_infos:
