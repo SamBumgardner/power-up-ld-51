@@ -3,13 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://1q57b8pabca1" path="res://scenes/Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://rnnidaqgshc2" path="res://hud/UpgradeProgress.tscn" id="2"]
 [ext_resource type="Script" uid="uid://d1r565f4hyg7s" path="res://scenes/Gameplay.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://bph5i04kcvtno" path="res://scenes/Bullet.tscn" id="3_e3rac"]
+[ext_resource type="Script" uid="uid://v0vpnvr5aswo" path="res://scenes/Turret.gd" id="3_hlv5w"]
 [ext_resource type="PackedScene" uid="uid://b3avdfbsoewf" path="res://hud/PlayerHealthBar.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://btkup45lf688h" path="res://patterns/PatternBase.tscn" id="4_e3rac"]
 [ext_resource type="PackedScene" uid="uid://b458kureux4kl" path="res://hud/NextUpgradeTracker.tscn" id="5"]
 [ext_resource type="Script" uid="uid://bip3ivuueqt7x" path="res://scenes/RestartGameControl.gd" id="6"]
-[ext_resource type="AudioStream" uid="uid://cqy6mjppxdlfp" path="res://audio/Music_Gameplay_Loop_5_Second_Percussion.wav" id="8"]
+[ext_resource type="AudioStream" uid="uid://ctkwvycaxn25i" path="res://audio/Music_Gameplay_Loop_5_Second_Percussion.wav" id="8"]
 [ext_resource type="Script" uid="uid://dg57c8g26h8sy" path="res://scenes/Background_Music.gd" id="9"]
-[ext_resource type="FontFile" uid="uid://bdfox03edvdop" path="res://fonts/Roboto/Roboto-Black.ttf" id="10"]
-[ext_resource type="AudioStream" uid="uid://b83doxyeq5dar" path="res://audio/Music_Gameplay_Loop_5_Second.ogg" id="10_4j5yk"]
+[ext_resource type="FontFile" uid="uid://ehl8e6cspiif" path="res://fonts/Roboto/Roboto-Black.ttf" id="10"]
+[ext_resource type="AudioStream" uid="uid://b34nd7ispyl04" path="res://audio/Music_Gameplay_Loop_5_Second.ogg" id="10_4j5yk"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("10")])
@@ -132,6 +135,16 @@ position = Vector2(768, 300)
 collision_layer = 2
 player_number = 2
 target_player_path = NodePath("../Player1")
+
+[node name="BulletExample" parent="." unique_id=1958253916 instance=ExtResource("3_e3rac")]
+position = Vector2(60, 60)
+
+[node name="Turret" type="Node2D" parent="." unique_id=98973299]
+position = Vector2(40, 40)
+script = ExtResource("3_hlv5w")
+metadata/_custom_type_script = "uid://v0vpnvr5aswo"
+
+[node name="Node2D" parent="Turret" unique_id=436592881 instance=ExtResource("4_e3rac")]
 
 [node name="Projectiles" type="Node" parent="." unique_id=1272548138]
 
