@@ -12,8 +12,8 @@ var turret_generator:TurretGenerator = preload("res://TurretGenerator.gd").new()
 var secret_score:int = 0
 
 func _ready():
-	projectile_pool.init(self)
-	turret_generator.init(self)
+	projectile_pool.initialize(self)
+	turret_generator.initialize(self)
 
 	announcement_label.text = ""
 

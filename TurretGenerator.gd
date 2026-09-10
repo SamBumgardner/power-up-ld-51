@@ -15,5 +15,5 @@ func init(parent):
 
 func _on_create_turret(pattern_node, position):
 	var turret:Turret = turret_template.instantiate() as Turret
-	turret.init(pattern_node, position)
+	turret.initialize(pattern_node, position)
 	parent_node.add_child(turret)
