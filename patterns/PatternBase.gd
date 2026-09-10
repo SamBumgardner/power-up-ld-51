@@ -20,7 +20,7 @@ func _ready():
 	var projectile_pool:ProjectilePool = gameplay_node.get("projectile_pool")
 	
 	for cannon in cannons:
-		cannon.connect("fired_projectile", projectile_pool, "_on_fired_projectile")
+		cannon.connect("fired_projectile", Callable(projectile_pool, "_on_fired_projectile"))
 
 func _physics_process(delta):
 	var end_time = total_elapsed + delta
