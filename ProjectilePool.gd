@@ -8,7 +8,7 @@ var parent_node:Node
 var projectile_node:Node
 var projectiles
 
-func init(parent:Node):
+func initialize(parent:Node):
 	parent_node = parent
 	projectile_node = parent_node.find_child("Projectiles")
 	projectiles = preload("res://scenes/Bullet.tscn")

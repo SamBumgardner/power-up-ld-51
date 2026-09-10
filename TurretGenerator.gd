@@ -9,7 +9,7 @@ class_name TurretGenerator
 var parent_node:Gameplay
 var turret_template:PackedScene
 
-func init(parent):
+func initialize(parent):
 	parent_node = parent
 	turret_template = preload("res://scenes/Turret.tscn")
 
