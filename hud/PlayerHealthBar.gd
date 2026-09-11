@@ -1,8 +1,5 @@
 extends ProgressBar
 
-const BLUE = Color(0, 25, 175, 200)
-const ORANGE = Color(225, 50, 0, 200)
-
 @export var player_path: NodePath
 @onready var player:Player = get_node(player_path) as Player
 
