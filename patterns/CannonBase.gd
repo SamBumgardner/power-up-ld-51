@@ -1,5 +1,11 @@
-extends Reference
+extends RefCounted
 
+## Base cannon class to try firing one bullet at a time.
+##
+## How often and in which direction bullets fire is usually defined by
+##  an extension of [PatternBase].
+## Complex patterns may be defined with a list of cannons deciding
+##  individual bullet vectors.
 class_name CannonBase
 
 signal fired_projectile
@@ -8,8 +14,8 @@ var pattern_parent:Node2D
 var pattern_duration:float
 var pattern_collision:int
 
-export var projectile_sprite_frame = 0
-export var base_velocity:float = 250
+@export var projectile_sprite_frame = 0
+@export var base_velocity:float = 250
 var projectile_infos:Array
 var calc_vector:Vector2 = Vector2(1, 0)
 
@@ -19,7 +25,6 @@ func _init(_pattern_parent:Node2D, _pattern_duration:float, _pattern_collision:i
 	pattern_collision = _pattern_collision
 	
 	projectile_infos = _projectile_infos
-	pass
 
 func try_shoot(start_time, end_time):
 	for projectile_info in projectile_infos:

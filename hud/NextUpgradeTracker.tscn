@@ -1,72 +1,78 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene format=3 uid="uid://b458kureux4kl"]
 
-[ext_resource path="res://art/plus_powerup.png" type="Texture" id=1]
-[ext_resource path="res://art/random_powerup.png" type="Texture" id=2]
-[ext_resource path="res://art/targeted_powerup.png" type="Texture" id=3]
-[ext_resource path="res://hud/UpgradeTrackerQueue.gd" type="Script" id=4]
-[ext_resource path="res://hud/NextUpgradeTrackerRoot.gd" type="Script" id=5]
+[ext_resource type="Texture2D" uid="uid://ms4aqtqeyiex" path="res://art/plus_powerup.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dea1q8rcn4dc5" path="res://art/random_powerup.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dkwbvxrtw4puo" path="res://art/targeted_powerup.png" id="3"]
+[ext_resource type="Script" uid="uid://dhutle2c6c7rr" path="res://hud/UpgradeTrackerQueue.gd" id="4"]
+[ext_resource type="Script" uid="uid://rgenfn5ps0pt" path="res://hud/NextUpgradeTrackerRoot.gd" id="5"]
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id="1"]
 interpolation_mode = 2
-offsets = PoolRealArray( 0, 1.94053e-28, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 0.529412, 0, 0, 0, 0 )
+offsets = PackedFloat32Array(0, 1.94053e-28, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.529412, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture2D" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture2D" id="2"]
+gradient = SubResource("1")
 width = 128
 height = 48
-fill_from = Vector2( 0.9875, 0.752239 )
-fill_to = Vector2( 0, 0.8 )
+fill_from = Vector2(0.9875, 0.752239)
+fill_to = Vector2(0, 0.8)
 
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ) ],
-"loop": false,
-"name": "default",
+[sub_resource type="SpriteFrames" id="3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": 0,
+"name": &"default",
 "speed": 0.0
-} ]
+}]
 
-[node name="NextUpgradeTracker" type="Node2D"]
-script = ExtResource( 5 )
+[node name="NextUpgradeTracker" type="MarginContainer" unique_id=1047597288]
+script = ExtResource("5")
 
-[node name="BackgroundLeft" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 128.0
-margin_bottom = 48.0
-texture = SubResource( 2 )
-script = ExtResource( 4 )
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1521809380]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="BackgroundLeft" type="TextureRect" parent="HBoxContainer" unique_id=239401897]
+layout_mode = 2
+texture = SubResource("2")
+script = ExtResource("4")
 player_number = 1
-parent_path = NodePath("..")
+parent_path = NodePath("../..")
 
-[node name="FirstUpgrade" type="AnimatedSprite" parent="BackgroundLeft"]
-position = Vector2( 100, 24 )
-scale = Vector2( 0.25, 0.25 )
-frames = SubResource( 3 )
+[node name="FirstUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundLeft" unique_id=562079330]
+position = Vector2(100, 24)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("3")
 
-[node name="SecondUpgrade" type="AnimatedSprite" parent="BackgroundLeft"]
-position = Vector2( 56, 24 )
-scale = Vector2( 0.25, 0.25 )
-frames = SubResource( 3 )
+[node name="SecondUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundLeft" unique_id=1650621074]
+position = Vector2(56, 24)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("3")
 
-[node name="BackgroundRight" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 128.0
-margin_right = 256.0
-margin_bottom = 48.0
-texture = SubResource( 2 )
+[node name="BackgroundRight" type="TextureRect" parent="HBoxContainer" unique_id=1940284777]
+layout_mode = 2
+texture = SubResource("2")
 flip_h = true
-script = ExtResource( 4 )
+script = ExtResource("4")
 player_number = 2
-parent_path = NodePath("..")
+parent_path = NodePath("../..")
 
-[node name="FirstUpgrade" type="AnimatedSprite" parent="BackgroundRight"]
-position = Vector2( 28, 24 )
-scale = Vector2( 0.25, 0.25 )
-frames = SubResource( 3 )
+[node name="FirstUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundRight" unique_id=1268625437]
+position = Vector2(28, 24)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("3")
 
-[node name="SecondUpgrade" type="AnimatedSprite" parent="BackgroundRight"]
-position = Vector2( 72, 24 )
-scale = Vector2( 0.25, 0.25 )
-frames = SubResource( 3 )
+[node name="SecondUpgrade" type="AnimatedSprite2D" parent="HBoxContainer/BackgroundRight" unique_id=976226145]
+position = Vector2(72, 24)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("3")

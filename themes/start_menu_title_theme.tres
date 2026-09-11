@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://cjkixmil7us47"]
+
+[ext_resource type="FontFile" uid="uid://ehl8e6cspiif" path="res://fonts/Roboto/Roboto-Black.ttf" id="1_yqtkd"]
+
+[resource]
+default_font = ExtResource("1_yqtkd")
+default_font_size = 100
