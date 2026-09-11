@@ -33,8 +33,8 @@ signal upgrades_changed
 @export var player_number = 1
 @export var target_player_path: NodePath
 
-@onready var target_player = get_node(target_player_path)
-@onready var target_player_collision = target_player.get("collision_layer") 
+@onready var target_player: Player = get_node(target_player_path)
+@onready var target_player_collision = target_player.get("collision_layer")
 
 const BLUE = Color(.5, .5, 1, 1)
 const ORANGE = Color(1, .7, .6, 1)
@@ -67,6 +67,7 @@ const upgrade_refill = 2
 var next_upgrades:Array = [randi() % patterns.size(), randi() % patterns.size()]
 
 func _ready():
+	print("DEBUG01 player %s target_player_collision: %s" % [str(player_number), target_player_collision])
 	player_prefix = "p" + str(player_number) + "_"
 	velocity = Vector2.ZERO
 	screen_size = get_viewport_rect().size
