@@ -2,14 +2,17 @@
 
 [ext_resource type="Script" uid="uid://cs5t8w2u0hrqk" path="res://scenes/StartMenu.gd" id="1"]
 [ext_resource type="Theme" uid="uid://bamjhy6hiqcxj" path="res://themes/start_menu_theme.tres" id="1_aso40"]
-[ext_resource type="AudioStream" uid="uid://c0yc6ky36xblu" path="res://audio/Blip_Select.wav" id="2"]
+[ext_resource type="AudioStream" uid="uid://ccsyana0b8fcn" path="res://audio/Blip_Select.wav" id="2"]
 [ext_resource type="Theme" uid="uid://cjkixmil7us47" path="res://themes/start_menu_title_theme.tres" id="2_aso40"]
-[ext_resource type="AudioStream" uid="uid://bbfv5wqegii4" path="res://audio/Blip_Focus.wav" id="3"]
-[ext_resource type="FontFile" uid="uid://bdfox03edvdop" path="res://fonts/Roboto/Roboto-Black.ttf" id="4"]
+[ext_resource type="AudioStream" uid="uid://do1ttsv2odha6" path="res://audio/Blip_Focus.wav" id="3"]
+[ext_resource type="FontFile" uid="uid://ehl8e6cspiif" path="res://fonts/Roboto/Roboto-Black.ttf" id="4"]
 [ext_resource type="Theme" uid="uid://bt6gwg22tdsmq" path="res://themes/start_menu_buttons_container_theme.tres" id="5_cuvp2"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("4")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
 cache/0/embolden = 0.0
@@ -42,6 +45,9 @@ cache/0/70/0/scale = 1.0
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("4")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
 cache/0/embolden = 0.0
@@ -74,6 +80,9 @@ cache/0/18/0/scale = 1.0
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("4")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
 cache/0/embolden = 0.0

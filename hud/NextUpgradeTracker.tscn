@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b458kureux4kl"]
 
-[ext_resource type="Texture2D" uid="uid://v87v01dmxqr5" path="res://art/plus_powerup.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://2wjkdq3gda6f" path="res://art/random_powerup.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://cnthc6yy5b5q" path="res://art/targeted_powerup.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://ms4aqtqeyiex" path="res://art/plus_powerup.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dea1q8rcn4dc5" path="res://art/random_powerup.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dkwbvxrtw4puo" path="res://art/targeted_powerup.png" id="3"]
 [ext_resource type="Script" uid="uid://dhutle2c6c7rr" path="res://hud/UpgradeTrackerQueue.gd" id="4"]
 [ext_resource type="Script" uid="uid://rgenfn5ps0pt" path="res://hud/NextUpgradeTrackerRoot.gd" id="5"]
 

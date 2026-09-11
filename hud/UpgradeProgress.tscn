@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://rnnidaqgshc2"]
+[gd_scene format=3 uid="uid://rnnidaqgshc2"]
 
 [ext_resource type="Script" uid="uid://b2wtmqoms8t2n" path="res://hud/UpgradeProgress.gd" id="1"]
 [ext_resource type="Theme" uid="uid://52b8apuajsh2" path="res://themes/upgrade_progress_bars_theme.tres" id="1_k6ckt"]
 
-[node name="UpgradeProgress" type="MarginContainer"]
+[node name="UpgradeProgress" type="MarginContainer" unique_id=658594377]
 custom_minimum_size = Vector2(0, 15)
 anchors_preset = 10
 anchor_right = 1.0
@@ -14,21 +14,21 @@ size_flags_vertical = 3
 theme = ExtResource("1_k6ckt")
 script = ExtResource("1")
 
-[node name="UpgradeTimer" type="Timer" parent="."]
+[node name="UpgradeTimer" type="Timer" parent="." unique_id=1858429265]
 wait_time = 10.0
 autostart = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=262529748]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="LeftHalf" type="ProgressBar" parent="HBoxContainer"]
+[node name="LeftHalf" type="ProgressBar" parent="HBoxContainer" unique_id=102298197]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 show_percentage = false
 
-[node name="RightHalf" type="ProgressBar" parent="HBoxContainer"]
+[node name="RightHalf" type="ProgressBar" parent="HBoxContainer" unique_id=1891640103]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
