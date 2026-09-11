@@ -34,7 +34,7 @@ signal upgrades_changed
 @export var target_player_path: NodePath
 
 @onready var target_player = get_node(target_player_path)
-@onready var target_player_collision = 4
+@onready var target_player_collision = target_player.get("collision_layer") 
 
 const BLUE = Color(.5, .5, 1, 1)
 const ORANGE = Color(1, .7, .6, 1)
