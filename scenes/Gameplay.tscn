@@ -125,6 +125,7 @@ script = ExtResource("3")
 
 [node name="Player1" parent="." unique_id=1833543154 instance=ExtResource("1")]
 position = Vector2(256, 300)
+collision_mask = 2
 target_player_path = NodePath("../Player2")
 
 [node name="Player2" parent="." unique_id=1775579794 instance=ExtResource("1")]
