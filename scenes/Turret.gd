@@ -15,7 +15,7 @@ class_name Turret
 const BLUE = Color(.5, .5, 1, 1)
 const ORANGE = Color(1, .5, .6, 1)
 
-func initialize(_pattern:PatternBase, _position:Vector2):
+func init(_pattern:PatternBase, _position:Vector2):
 	add_child(_pattern)
 	position = _position
 

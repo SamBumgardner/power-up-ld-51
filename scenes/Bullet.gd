@@ -9,7 +9,7 @@ var velocity = Vector2();
 func _ready():
 	screen_size = get_viewport_rect().size
 
-func initialize(spawn_position, spawn_velocity, spawn_collision_mask, sprite_frame):
+func init(spawn_position, spawn_velocity, spawn_collision_mask, sprite_frame):
 	position = spawn_position
 	velocity = spawn_velocity
 	collision_layer = (spawn_collision_mask % 2) + 1
