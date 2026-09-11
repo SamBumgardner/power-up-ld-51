@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b3avdfbsoewf" path="res://hud/PlayerHealthBar.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://b458kureux4kl" path="res://hud/NextUpgradeTracker.tscn" id="5"]
 [ext_resource type="Script" uid="uid://bip3ivuueqt7x" path="res://scenes/RestartGameControl.gd" id="6"]
-[ext_resource type="AudioStream" uid="uid://cqy6mjppxdlfp" path="res://audio/Music_Gameplay_Loop_5_Second_Percussion.wav" id="8"]
+[ext_resource type="AudioStream" uid="uid://ctkwvycaxn25i" path="res://audio/Music_Gameplay_Loop_5_Second_Percussion.wav" id="8"]
 [ext_resource type="Script" uid="uid://dg57c8g26h8sy" path="res://scenes/Background_Music.gd" id="9"]
-[ext_resource type="FontFile" uid="uid://bdfox03edvdop" path="res://fonts/Roboto/Roboto-Black.ttf" id="10"]
-[ext_resource type="AudioStream" uid="uid://b83doxyeq5dar" path="res://audio/Music_Gameplay_Loop_5_Second.ogg" id="10_4j5yk"]
+[ext_resource type="FontFile" uid="uid://ehl8e6cspiif" path="res://fonts/Roboto/Roboto-Black.ttf" id="10"]
+[ext_resource type="AudioStream" uid="uid://b34nd7ispyl04" path="res://audio/Music_Gameplay_Loop_5_Second.ogg" id="10_4j5yk"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("10")])

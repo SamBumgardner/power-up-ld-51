@@ -16,4 +16,4 @@ func initialize(parent:Node):
 func _on_fired_projectile(position, velocity, collision_mask, sprite_frame):
 	var projectile = projectiles.instantiate()
 	projectile.initialize(position, velocity, collision_mask, sprite_frame)
-	parent_node.add_child_below_node(projectile_node, projectile)
+	projectile_node.add_sibling(projectile)
