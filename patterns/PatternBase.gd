@@ -5,7 +5,7 @@ class_name PatternBase
 
 @export var duration = 1.0
 var total_elapsed = 0
-@export var bullet_collision_mask = 0b0000 # (int, LAYERS_2D_PHYSICS)
+@export_flags_2d_physics var bullet_collision_mask = 0b0000
 
 @onready var cannons = get_cannons()
 
