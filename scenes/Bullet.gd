@@ -12,7 +12,7 @@ func _ready():
 func initialize(spawn_position, spawn_velocity, spawn_collision_mask, sprite_frame):
 	position = spawn_position
 	velocity = spawn_velocity
-	collision_layer = 0
+	collision_layer = 1
 	collision_mask = spawn_collision_mask
 	$AnimatedSprite2D.frame = sprite_frame
 	# hacky way to color sprites to indicate player allegiance:
