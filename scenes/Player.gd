@@ -68,7 +68,6 @@ const upgrade_refill = 2
 var next_upgrades:Array = [randi() % patterns.size(), randi() % patterns.size()]
 
 func _ready():
-	print("DEBUG01 player %s target_player_collision: %s" % [str(player_number), target_player_collision])
 	player_prefix = "p" + str(player_number) + "_"
 	velocity = Vector2.ZERO
 	screen_size = get_viewport_rect().size
