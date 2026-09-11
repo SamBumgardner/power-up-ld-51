@@ -224,7 +224,6 @@ stream = ExtResource("10_4j5yk")
 volume_db = -12.0
 parameters/looping = true
 
-[connection signal="health_changed" from="Player1" to="HUD/MarginContainer/HBoxContainer/MarginContainer/HealthBarP1" method="_on_player_1_health_changed"]
 [connection signal="timeout" from="GameOverToResetDelay" to="." method="_on_GameOverToResetDelay_timeout"]
 [connection signal="timeout" from="GameOverToResetDelay" to="RestartGameControl" method="_on_GameOverToResetDelay_timeout"]
 [connection signal="finished" from="Background_Music/AudioStreamPlayer" to="Background_Music" method="_on_AudioStreamPlayer_finished"]
