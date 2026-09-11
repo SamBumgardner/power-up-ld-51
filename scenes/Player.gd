@@ -120,6 +120,20 @@ func assign_upgrade():
 	upgrades.append(upgrade)
 	add_child(upgrade)
 
+func take_damage():
+	if $Recovery.is_stopped():
+		health -= 1
+	else:
+		return
+
+	if health > 0:
+		emit_signal("hit")
+		_play_SFX_Hurt()
+		_on_hit()
+	else:
+		_play_SFX_Killed()
+		_on_kill()
+
 ## Uses up the player's next available upgrade to set down a turret
 ##  aligned to the player's own team.
 func _on_create_turret():
@@ -153,15 +167,7 @@ func _physics_process(delta):
 # HURT #
 ########
 func _on_Player_area_shape_entered(_area_id, _area, _area_shape, _self_shape):
-	if $Recovery.is_stopped():
-		health -= 1
-	if health > 0:
-		emit_signal("hit")
-		_play_SFX_Hurt()
-		_on_hit()
-	else:
-		_play_SFX_Killed()
-		_on_kill()
+	take_damage()
 
 func _on_hit():
 	$Recovery.start(RECOVERY_DURATION)
