@@ -214,6 +214,7 @@ volume_db = -12.0
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Background_Music" unique_id=101454324]
 stream = ExtResource("10_4j5yk")
 volume_db = -12.0
+parameters/looping = true
 
 [connection signal="timeout" from="GameOverToResetDelay" to="." method="_on_GameOverToResetDelay_timeout"]
 [connection signal="timeout" from="GameOverToResetDelay" to="RestartGameControl" method="_on_GameOverToResetDelay_timeout"]
