@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cqygqsaf66boh" path="res://hud/PlayerHealthBar.gd" id="1"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hlv5w"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="HealthBar" type="ProgressBar" unique_id=651120289]
 offset_right = 4.0
 offset_bottom = 4.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hlv5w")
 max_value = 5.0
 step = 1.0
 fill_mode = 3

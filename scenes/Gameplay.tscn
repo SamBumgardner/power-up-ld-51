@@ -11,6 +11,9 @@
 [ext_resource type="FontFile" uid="uid://ehl8e6cspiif" path="res://fonts/Roboto/Roboto-Black.ttf" id="10"]
 [ext_resource type="AudioStream" uid="uid://b34nd7ispyl04" path="res://audio/Music_Gameplay_Loop_5_Second.ogg" id="10_4j5yk"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4j5yk"]
+bg_color = Color(0, 1, 1, 1)
+
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("10")])
 subpixel_positioning = 0
@@ -126,6 +129,9 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_netfp"]
+bg_color = Color(1, 1, 0, 1)
+
 [node name="Gameplay" type="Node" unique_id=835054235]
 script = ExtResource("3")
 
@@ -169,6 +175,8 @@ layout_mode = 2
 [node name="HealthBarP1" parent="HUD/MarginContainer/HBoxContainer/MarginContainer" unique_id=614723231 instance=ExtResource("4")]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_4j5yk")
+value = 5.0
 player_path = NodePath("../../../../../Player1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/HBoxContainer" unique_id=1786713560]
@@ -201,6 +209,8 @@ layout_mode = 2
 [node name="HealthBarP2" parent="HUD/MarginContainer/HBoxContainer/MarginContainer2" unique_id=1493578907 instance=ExtResource("4")]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_netfp")
+value = 5.0
 player_path = NodePath("../../../../../Player2")
 
 [node name="GameOverToResetDelay" type="Timer" parent="." unique_id=906099710]
