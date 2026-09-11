@@ -5,8 +5,8 @@ class_name CannonTargeted
 var target_node:Node2D
 
 func _init(_pattern_parent:Node2D, _pattern_duration:float, _pattern_collision:int, 
-		_projectile_infos:Array, _target_node:Node2D) \
-		.(_pattern_parent, _pattern_duration, _pattern_collision, _projectile_infos):
+		_projectile_infos:Array, _target_node:Node2D):
+	super(_pattern_parent, _pattern_duration, _pattern_collision, _projectile_infos)
 	target_node = _target_node
 
 func populate_velocity(projectile_info:ProjectileInfo):

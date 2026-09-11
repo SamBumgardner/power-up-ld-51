@@ -2,8 +2,8 @@ extends PatternBase
 
 class_name PatternRandom
 
-func _init(_bullet_collision_mask:int).(_bullet_collision_mask):
-	pass
+func _init(_bullet_collision_mask:int):
+	super(_bullet_collision_mask)
 
 func get_cannons():
 	var projectile_infos = [

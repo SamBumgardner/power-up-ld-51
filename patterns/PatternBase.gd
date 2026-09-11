@@ -2,11 +2,11 @@ extends Node2D
 
 class_name PatternBase
 
-export var duration = 1.0
+@export var duration = 1.0
 var total_elapsed = 0
-export(int, LAYERS_2D_PHYSICS) var bullet_collision_mask = 0b0000
+@export_flags_2d_physics var bullet_collision_mask = 0b0000
 
-onready var cannons = get_cannons()
+@onready var cannons = get_cannons()
 
 func _init(_bullet_collision_mask:int):
 	bullet_collision_mask = _bullet_collision_mask
