@@ -3,10 +3,6 @@ extends PatternBase
 ## Pattern class to fire 5 bullets in random directions every second.
 class_name PatternRandom
 
-func _init(_bullet_collision_mask:int):
-	super(_bullet_collision_mask)
-	pass
-
 func get_cannons():
 	var projectile_infos = [
 		ProjectileInfo.new(1, 1),
