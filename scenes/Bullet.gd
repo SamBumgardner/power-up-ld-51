@@ -1,7 +1,6 @@
 extends Area2D
 
 const BLUE = Color(0, 25, 175, 200)
-const NUMBER_OF_PLAYERS = 2
 const ORANGE = Color(225, 50, 0, 200)
 
 var screen_size
@@ -13,16 +12,14 @@ func _ready():
 func initialize(spawn_position, spawn_velocity, spawn_collision_mask, sprite_frame):
 	position = spawn_position
 	velocity = spawn_velocity
-	collision_layer = 0
+	collision_layer = (spawn_collision_mask % 2) + 1
 	collision_mask = spawn_collision_mask
 	$AnimatedSprite2D.frame = sprite_frame
 	# hacky way to color sprites to indicate player allegiance:
-	if (spawn_collision_mask % NUMBER_OF_PLAYERS == 0):
+	if (spawn_collision_mask % 2 == 0):
 		$AnimatedSprite2D.modulate = BLUE
-		collision_layer = 3
 	else:
 		$AnimatedSprite2D.modulate = ORANGE
-		collision_layer = 4
 
 func _physics_process(delta):
 	position += velocity * delta
