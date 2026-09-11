@@ -24,7 +24,7 @@ class_name Player
 signal hit
 signal kill
 signal create_turret
-signal health_changed
+signal health_changed(remaining_health: int)
 signal upgrade_consumed
 signal upgrades_changed
 
@@ -124,7 +124,7 @@ func assign_upgrade():
 func take_damage():
 	if $Recovery.is_stopped():
 		health -= 1
-		health_changed.emit(health)
+		emit_signal("health_changed", health)
 	else:
 		return
 
