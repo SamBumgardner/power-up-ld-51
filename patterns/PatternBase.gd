@@ -5,6 +5,9 @@ class_name PatternBase
 
 @export var duration = 1.0
 var total_elapsed = 0
+## Each bullet's collision mask.
+## Allows each bullet to detect when it runs into the target player.
+## Separate from the bullet collision layer, which seems to be missing.
 @export_flags_2d_physics var bullet_collision_mask = 0b0000
 
 @onready var cannons = get_cannons()
