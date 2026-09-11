@@ -39,8 +39,7 @@ func _on_Bullet_area_shape_entered(_area_id, area, _area_shape, _self_shape):
 	)
 	if area is Player:
 		area.take_damage()
-	
-	kill()
+		kill()
 
 func kill():
 	hide()
