@@ -14,5 +14,5 @@ func _ready():
 func _on_player_health_changed(_remaining_health: int) -> void:
 	_set_player_health_current()
 
-func _set_player_health_current():
+func _set_player_health_current() -> void:
 	value = player.health
