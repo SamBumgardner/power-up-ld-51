@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://1q57b8pabca1"]
 
 [ext_resource type="Script" uid="uid://t3gb6tigvl56" path="res://scenes/Player.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://bfa7qgxo0gh0v" path="res://art/player.png" id="2"]
-[ext_resource type="AudioStream" uid="uid://brkurytpnf227" path="res://audio/Place_Turret.wav" id="3"]
-[ext_resource type="AudioStream" uid="uid://nu1e8e7aai7u" path="res://audio/Upgrade_Self.wav" id="4"]
-[ext_resource type="AudioStream" uid="uid://dwqjhijbxd3me" path="res://audio/Explosion_Long.wav" id="5"]
-[ext_resource type="AudioStream" uid="uid://da4osutbva5eu" path="res://audio/Explosion_Middle.wav" id="6"]
-[ext_resource type="AudioStream" uid="uid://dcb72lpvdw831" path="res://audio/Explosion_High.wav" id="7"]
+[ext_resource type="Texture2D" uid="uid://v08djwrdtaj5" path="res://art/player.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://bmxydcevv64jk" path="res://audio/Place_Turret.wav" id="3"]
+[ext_resource type="AudioStream" uid="uid://bak0eetwc8fay" path="res://audio/Upgrade_Self.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://bue44ldmip7gc" path="res://audio/Explosion_Long.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://c66h8hr2yb1xp" path="res://audio/Explosion_Middle.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://caxi12irdtso8" path="res://audio/Explosion_High.wav" id="7"]
 
 [sub_resource type="SpriteFrames" id="2"]
 animations = [{
