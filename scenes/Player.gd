@@ -1,21 +1,41 @@
 extends Area2D
 
+## Player class for a player to play as.
+##
+## Defines player characteristics for health, speed, and player number.
+## [br]
+##
+## [b]Abilities of the player:[/b] [br]
+##
+## - May move orthogonally or diagonally with 4 cardinal directions.
+## [br]
+## - May assign upgrades to itself to automatically shoot at another
+##  player over time. [br]
+## - May create stationary turrets to automatically shoot at another
+##  player over time. [br]
+##
+## [b]Reactions of the player:[/b] [br]
+##
+## - May take damage when running into another player's bullets. [br]
+## - May play sound effects for non-movement game actions and getting
+##  hit.
 class_name Player
 
 signal hit
 signal kill
 signal create_turret
+signal health_changed(remaining_health: int)
 signal upgrade_consumed
 signal upgrades_changed
 
-export var speed = 125
-export var max_health = 5
-onready var health = max_health
-export var player_number = 1
-export(NodePath) var target_player_path
+@export var speed = 125
+@export var max_health = 5
+@onready var health = max_health
+@export var player_number = 1
+@export var target_player_path: NodePath
 
-onready var target_player = get_node(target_player_path)
-onready var target_player_collision = target_player.get("collision_layer") 
+@onready var target_player = get_node(target_player_path)
+@onready var target_player_collision = target_player.get("collision_layer") 
 
 const BLUE = Color(.5, .5, 1, 1)
 const ORANGE = Color(1, .7, .6, 1)
@@ -31,13 +51,20 @@ var radius
 var max_x
 var max_y
 
+## Possible upgrade to target an enemy player.
 var pattern_targeted = preload("res://patterns/targeted/PatternTargeted.gd")
+## Possible upgrade to shoot randomly.
 var pattern_random = preload("res://patterns/random/PatternRandom.gd")
+## Possible upgrade to shoot in a plus sign shape.
 var pattern_plus = preload("res://patterns/plus/PatternPlus.gd")
+## List of possible upgrades defined as bullet patterns.
 var patterns:Array = [pattern_targeted, pattern_random, pattern_plus]
+## Upgrades used on the player themself.
 var upgrades:Array = []
 
+## Maximum number of the player's available unused upgrades.
 const upgrade_refill = 2
+## Available upgrades to be used.
 var next_upgrades:Array = [randi() % patterns.size(), randi() % patterns.size()]
 
 func _ready():
@@ -53,23 +80,25 @@ func _ready():
 	else:
 		default_tint = ORANGE
 	
-	$AnimatedSprite.modulate = default_tint
+	$AnimatedSprite2D.modulate = default_tint
 	pass
 
 
 func _process(_delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		$AnimatedSprite.play()
+		$AnimatedSprite2D.play()
 	else:
-		$AnimatedSprite.stop()
+		$AnimatedSprite2D.stop()
 	
-	if Input.is_action_just_pressed(player_prefix + "upgrade") && !next_upgrades.empty():
+	if Input.is_action_just_pressed(player_prefix + "upgrade") && !next_upgrades.is_empty():
 		assign_upgrade()
 	
-	if Input.is_action_just_pressed(player_prefix + "turret") && !next_upgrades.empty():
-		create_turret()
+	if Input.is_action_just_pressed(player_prefix + "turret") && !next_upgrades.is_empty():
+		_on_create_turret()
 
+## Removes and returns the player's next available upgrade to be used
+##  in another method.
 func consume_next_pattern():
 	var pattern
 	var next_upgrade_index = next_upgrades.pop_back()
@@ -83,16 +112,36 @@ func consume_next_pattern():
 	emit_signal("upgrades_changed", next_upgrades)
 	return pattern
 
+## Uses up the player's next available upgrade to upgrade themself as a
+##  player.
 func assign_upgrade():
 	_play_SFX_Assign_Upgrade()
 	var upgrade = consume_next_pattern()
 	upgrades.append(upgrade)
 	add_child(upgrade)
 
-func create_turret():
+func take_damage():
+	if $Recovery.is_stopped():
+		health -= 1
+		emit_signal("health_changed", health)
+	else:
+		return
+
+	if health > 0:
+		emit_signal("hit")
+		_play_SFX_Hurt()
+		_on_hit()
+	else:
+		_play_SFX_Killed()
+		_on_kill()
+
+## Uses up the player's next available upgrade to set down a turret
+##  aligned to the player's own team.
+func _on_create_turret():
 	emit_signal("create_turret", consume_next_pattern(), position)
 	_play_SFX_Create_Turret()
 	
+## Empty and refill the player's available unused upgrades.
 func _on_Upgrade_timeout():
 	next_upgrades.clear() 
 	for _i in range(upgrade_refill):
@@ -119,22 +168,14 @@ func _physics_process(delta):
 # HURT #
 ########
 func _on_Player_area_shape_entered(_area_id, _area, _area_shape, _self_shape):
-	if $Recovery.is_stopped():
-		health -= 1
-	if health > 0:
-		emit_signal("hit")
-		_play_SFX_Hurt()
-		hit()
-	else:
-		_play_SFX_Killed()
-		kill()
+	take_damage()
 
-func hit():
+func _on_hit():
 	$Recovery.start(RECOVERY_DURATION)
-	$AnimatedSprite.modulate = HURT_TINT
+	$AnimatedSprite2D.modulate = HURT_TINT
 	$CollisionShape2D.set_deferred("disabled", true)
 
-func kill():
+func _on_kill():
 	hide()
 	$CollisionShape2D.set_deferred("disabled", true)
 	set_process(false)
@@ -145,7 +186,7 @@ func kill():
 	emit_signal("kill", player_number)
 
 func _on_Recovery_timeout():
-	$AnimatedSprite.modulate = default_tint
+	$AnimatedSprite2D.modulate = default_tint
 	$CollisionShape2D.set_deferred("disabled", false)
 
 ###############

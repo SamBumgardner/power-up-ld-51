@@ -1,4 +1,4 @@
-extends Node2D
+extends MarginContainer
 
-export(NodePath) var p1_path
-export(NodePath) var p2_path
+@export var p1_path: NodePath
+@export var p2_path: NodePath

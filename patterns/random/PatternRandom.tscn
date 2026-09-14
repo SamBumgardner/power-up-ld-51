@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene format=3 uid="uid://disj3oku5s7b7"]
 
-[ext_resource path="res://patterns/PatternBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://patterns/random/PatternRandom.gd" type="Script" id=2]
+[ext_resource type="PackedScene" uid="uid://btkup45lf688h" path="res://patterns/PatternBase.tscn" id="1"]
+[ext_resource type="Script" uid="uid://cg02vbfwv2r5o" path="res://patterns/random/PatternRandom.gd" id="2"]
 
-[node name="PatternRandom" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="PatternRandom" unique_id=327371920 instance=ExtResource("1")]
+script = ExtResource("2")

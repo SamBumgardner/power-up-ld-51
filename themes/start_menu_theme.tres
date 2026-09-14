@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bamjhy6hiqcxj"]
+
+[ext_resource type="FontFile" uid="uid://b6a5yhw1xrq0x" path="res://fonts/Roboto/Roboto-Light.ttf" id="1_e1c58"]
+
+[resource]
+default_font = ExtResource("1_e1c58")
+default_font_size = 24
+MarginContainer/constants/margin_left = 48
+MarginContainer/constants/margin_right = 48
+VBoxContainer/constants/separation = 16

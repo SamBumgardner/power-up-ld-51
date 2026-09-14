@@ -22,6 +22,7 @@ Team members include:
 Coded using the [Godot](https://godotengine.org) game engine.
 
 The original game jam version, tagged as `ld51-submission` and [hosted on itch.io](https://nbumgardner.itch.io/ludum-dare-51-power-up), runs on Godot version 3.x.
+The latest stable `master` code branch runs on Godot version 4.7.
 
 ### License
 This game's code is open-source under the MIT License.

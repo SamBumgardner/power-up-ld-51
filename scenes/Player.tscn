@@ -1,58 +1,60 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene format=3 uid="uid://1q57b8pabca1"]
 
-[ext_resource path="res://scenes/Player.gd" type="Script" id=1]
-[ext_resource path="res://art/player.png" type="Texture" id=2]
-[ext_resource path="res://audio/Place_Turret.wav" type="AudioStream" id=3]
-[ext_resource path="res://audio/Upgrade_Self.wav" type="AudioStream" id=4]
-[ext_resource path="res://audio/Explosion_Long.wav" type="AudioStream" id=5]
-[ext_resource path="res://audio/Explosion_Middle.wav" type="AudioStream" id=6]
-[ext_resource path="res://audio/Explosion_High.wav" type="AudioStream" id=7]
+[ext_resource type="Script" uid="uid://t3gb6tigvl56" path="res://scenes/Player.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bfa7qgxo0gh0v" path="res://art/player.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://brkurytpnf227" path="res://audio/Place_Turret.wav" id="3"]
+[ext_resource type="AudioStream" uid="uid://nu1e8e7aai7u" path="res://audio/Upgrade_Self.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://dwqjhijbxd3me" path="res://audio/Explosion_Long.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://da4osutbva5eu" path="res://audio/Explosion_Middle.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://dcb72lpvdw831" path="res://audio/Explosion_High.wav" id="7"]
 
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "default",
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": 1,
+"name": &"default",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id="3"]
 radius = 5.0
 
-[node name="Player" type="Area2D"]
-collision_mask = 0
-script = ExtResource( 1 )
+[node name="Player" type="Area2D" unique_id=397542716]
+script = ExtResource("1")
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.45, 0.45 )
-frames = SubResource( 2 )
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1933784476]
+scale = Vector2(0.45, 0.45)
+sprite_frames = SubResource("2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1449579342]
+shape = SubResource("3")
 
-[node name="Recovery" type="Timer" parent="."]
+[node name="Recovery" type="Timer" parent="." unique_id=1915332870]
 wait_time = 0.5
 one_shot = true
 
-[node name="Upgrade" type="Timer" parent="."]
+[node name="Upgrade" type="Timer" parent="." unique_id=1858218028]
 wait_time = 10.0
 autostart = true
 
-[node name="SFX_Assign_Upgrade" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+[node name="SFX_Assign_Upgrade" type="AudioStreamPlayer" parent="." unique_id=1074836782]
+stream = ExtResource("4")
 
-[node name="SFX_Create_Turret" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+[node name="SFX_Create_Turret" type="AudioStreamPlayer" parent="." unique_id=2082555031]
+stream = ExtResource("3")
 
-[node name="SFX_Explosion_Middle" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+[node name="SFX_Explosion_Middle" type="AudioStreamPlayer" parent="." unique_id=1140098333]
+stream = ExtResource("6")
 
-[node name="SFX_Explosion_Long" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 5 )
+[node name="SFX_Explosion_Long" type="AudioStreamPlayer" parent="." unique_id=1222452787]
+process_mode = 3
+stream = ExtResource("5")
 
-[node name="SFX_Explosion_High" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+[node name="SFX_Explosion_High" type="AudioStreamPlayer" parent="." unique_id=1666401902]
+stream = ExtResource("7")
 
 [connection signal="area_shape_entered" from="." to="." method="_on_Player_area_shape_entered"]
 [connection signal="timeout" from="Recovery" to="." method="_on_Recovery_timeout"]
